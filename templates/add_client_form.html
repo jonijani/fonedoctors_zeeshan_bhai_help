@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Add client details </h3>
+      <form method="POST" action="{% url 'add_customer' %}">
+        {% csrf_token %}
+        <div class="mb-3 ">
+          <label for="exampleInputEmail1" class="form-label">First name</label>
+          <input type="text" name = "first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        </div>
+      
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Last name</label>
+          <input type="text" name = "last_name"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Phone</label>
+          <input type="text" name = "phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Landline</label>
+          <input type="text" name = "landline" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Address</label>
+            <textarea class="form-control" name = "address"id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+            
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Postcode</label>
+            <input type="text" name = "postcode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

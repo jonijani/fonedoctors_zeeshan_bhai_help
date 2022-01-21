@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<form method="POST" action= "{% url 'add_job' %}">
+  {% csrf_token %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Select Customer</label>
+        <input list="list" name = "customer" class="form-control" id="make" aria-describedby="emailHelp">
+        <datalist id="list" >
+          <option>Select Customer</option>
+          {% for customer in customers %}
+          <option value="{{customer.full_name}}">{{customer.phone}} {{customer.email}}</option>
+          {% endfor %}
+      </datalist>
+
+
+      </div>
+        
+        {% comment %} select device type  {% endcomment %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Select Device Type</label>
+
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="device" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1">Mobile</label>
+          
+            <input type="radio" class="btn-check" name="device" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Laptop</label>
+          
+            <input type="radio" class="btn-check" name="device" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3">Tablet</label>
+
+            <input type="radio" class="btn-check" name="device" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3">Other</label>
+          </div> 
+          
+        </div>
+
+        {% comment %} dropdown menu for Make  {% endcomment %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Make</label>
+          <input type="list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <datalist id="make" >
+            <option>Select Make</option>
+            {% for make in make_context %}
+            <option value="{{make.make}}"></option>
+            {% endfor %}
+        </datalist>
+
+
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Model</label>
+          <input type="text" name = "model" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">IMEI</label>
+          <input type="text" name = "imei" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+          {% comment %} <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Address</label>
+            <textarea class="form-control" name = "address"id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+            
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Postcode</label>
+            <input type="text" name = "postcode" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+          </div> {% endcomment %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+
+
+
+
+{% endblock %}
