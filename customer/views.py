@@ -4,7 +4,7 @@ import datetime
 
 
 def home(request):
-    return render(request,'add_client_form.html')
+    return render(request,'login.html')
 
 def add_customer(request):
     if request.method == "POST":
