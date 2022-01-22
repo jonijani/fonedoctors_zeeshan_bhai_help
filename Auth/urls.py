@@ -19,7 +19,7 @@ from .import views
 
 urlpatterns = [
     path('login/', views.login_user, name='login_user'),#login used in browser address bar, view.login_user used in views and name= "login_user" always used in html
-    
+    path('logout/', views.logout_user, name='logout_user'),
     
 
 ]

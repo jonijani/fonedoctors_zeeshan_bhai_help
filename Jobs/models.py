@@ -11,7 +11,7 @@ class Devices(models.Model):
         return self.devices
 
 class Make(models.Model):
-    device = models.ForeignKey(Devices,on_delete=models.CASCADE)
+    device = models.ForeignKey(Devices,on_delete=models.CASCADE, related_name='make_device')
     make = models.CharField(max_length=250)
 
     def __str__(self):

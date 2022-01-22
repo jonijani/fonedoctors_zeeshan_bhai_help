@@ -22,29 +22,44 @@
         
         {% comment %} select device type  {% endcomment %}
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Select Device Type</label>
+          <label for="exampleInputEmail1" class="form-label" >Select Device Type</label>
 
           <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="device" id="btnradio1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="btnradio1">Mobile</label>
+            {% for device in device_context %}
+            
+            <input type="radio" class="btn-check" onclick="my_mobile()" name="device" value="{{device.devices}}" id="{{device.devices}}" autocomplete="off" >
+            {% comment %} line 30 id should be unique when we pass variables in the id it wil get uniqe name. {% endcomment %}
+            <label class="btn btn-outline-primary" for = "{{device.devices}}" >{{device.devices}}</label>
+            {% endfor %}
           
-            <input type="radio" class="btn-check" name="device" id="btnradio2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio2">Laptop</label>
-          
-            <input type="radio" class="btn-check" name="device" id="btnradio3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio3">Tablet</label>
-
-            <input type="radio" class="btn-check" name="device" id="btnradio3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio3">Other</label>
+           
           </div> 
           
         </div>
 
-        {% comment %} dropdown menu for Make  {% endcomment %}
-        <div class="mb-3">
+        <!-- {% comment %} dropdown menu for Make  {% endcomment %} -->
+        <div class="mb-3" id="mobile_div" style="display: none;">
+          <label for="exampleInputEmail1" class="form-label">Make {{make.make_device.all }}</label>
+          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
+          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <datalist id="make_list" >
+            <option>Select Make</option>
+            {% for make in make_context %}
+            
+            {% if make.device.id == 6 %}
+            <option value="{{make.make}}"></option>
+            {% endif %}
+            {% endfor %}
+        </datalist>
+
+
+        </div>
+<!-- 
+        <div class="mb-3" id="laptop_div">
           <label for="exampleInputEmail1" class="form-label">Make</label>
-          <input type="list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
-          <datalist id="make" >
+          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
+          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <datalist id="make_list" >
             <option>Select Make</option>
             {% for make in make_context %}
             <option value="{{make.make}}"></option>
@@ -53,11 +68,55 @@
 
 
         </div>
+
+
+        <div class="mb-3" id="tablet_div">
+          <label for="exampleInputEmail1" class="form-label">Make</label>
+          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
+          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <datalist id="make_list" >
+            <option>Select Make</option>
+            {% for make in make_context %}
+            <option value="{{make.make}}"></option>
+            {% endfor %}
+        </datalist>
+
+
+        </div>
+
+
+        <div class="mb-3" id="other_div">
+          <label for="exampleInputEmail1" class="form-label">Make</label>
+          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
+          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <datalist id="make_list" >
+            <option>Select Make</option>
+            {% for make in make_context %}
+            <option value="{{make.make}}"></option>
+            {% endfor %}
+        </datalist>
+
+
+        </div> -->
+
+        {% comment %} Model dropdown starts here  {% endcomment %}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Model</label>
-          <input type="text" name = "model" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          
+          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
+          <input list="model_list" name = "make" class="form-control" id="model" aria-describedby="emailHelp">
+          <datalist id="model_list" >
+            <option>Select model</option>
+            {% for model in model_context %}
+            <option value="{{model.model}}"></option>
+            {% endfor %}
+        </datalist>
+
+
         </div>
+
+
+
+
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">IMEI</label>
           <input type="text" name = "imei" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -84,6 +143,13 @@
   </div>
 
 
+<script>
+  function my_mobile(){
+    var x = document.getElementById("mobile_div");
+    x.style.display = "block"
+  }
+  
 
+</script>
 
 {% endblock %}
