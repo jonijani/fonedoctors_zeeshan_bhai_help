@@ -10,9 +10,19 @@ def add_job(request):
     make = Make.objects.all()
     model = Model.objects.all()
     context = {'customers':customers,'device_context':device,  'make_context':make, 'model_context':model}
-    return render(request,'add_job.html',context)
+    return render(request,'job_created.html',context)
     
 
 def dashboard(request):
-    
     return render(request,'dashboard.html')
+
+
+
+def search_job(request):
+    return render(request,'search_job.html')
+
+def job_created(request):
+    return render(request,'job_created.html')
+
+
+

@@ -17,7 +17,6 @@ def login_user(request):
         
         else:
             return HttpResponse('Invalid username or password')
-    # No backend authenticated the credentials
     return render(request,'login.html')
 
 def logout_user(request):

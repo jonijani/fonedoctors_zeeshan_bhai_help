@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h3>Add job page</h3>
+
 
 <form method="POST" action= "{% url 'add_job' %}">
   {% csrf_token %}
@@ -19,16 +21,17 @@
 
 
       </div>
-        
-        {% comment %} select device type  {% endcomment %}
+        <!-- Radio button for devices -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Select Device Type</label>
 
           <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
             {% for device in device_context %}
             
-            <input type="radio" class="btn-check" onclick="my_mobile()" name="device" value="{{device.devices}}" id="{{device.devices}}" autocomplete="off" >
-            {% comment %} line 30 id should be unique when we pass variables in the id it wil get uniqe name. {% endcomment %}
+            <input type="radio" class="btn-check" onclick="my_mobile()" name="device_mobile" value="{{device.devices}}" id="{{device.devices}}" autocomplete="off" >
+            <!--line 30 id should be unique when we pass variables in the id it wil get uniqe name -->
+
+
             <label class="btn btn-outline-primary" for = "{{device.devices}}" >{{device.devices}}</label>
             {% endfor %}
           
@@ -37,16 +40,35 @@
           
         </div>
 
-        <!-- {% comment %} dropdown menu for Make  {% endcomment %} -->
+        <!-- dropdown menu for Make and this div s  -->
         <div class="mb-3" id="mobile_div" style="display: none;">
           <label for="exampleInputEmail1" class="form-label">Make {{make.make_device.all }}</label>
-          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
-          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
+          <!--name always used in views.py functions and ID always used in front end and html,javascripts -->
+          <input list="make_list" name = "make" class="form-control" id="make_mobile" aria-describedby="emailHelp">
           <datalist id="make_list" >
             <option>Select Make</option>
             {% for make in make_context %}
             
             {% if make.device.id == 6 %}
+            <option value="{{make.make}}"></option>
+            <!-- in line 49 first comes from for loop variable and 2nd make comes from models fields/column -->
+            {% endif %}
+            {% endfor %}
+        </datalist>
+
+
+      </div>
+      
+      
+       
+        <div class="mb-3" id="laptop_div">
+          <label for="exampleInputEmail1" class="form-label">Make {{make.make_device.all }}</label>
+          <!-- name always used in views.py functions and ID always used in front end and html -->
+          <input list="make_list" name = "make" class="form-control" id="make_laptop" aria-describedby="emailHelp">
+          <datalist id="make_list" >
+            <option>Select Make</option>
+            {% for make in make_context %}
+            {% if make.device.id == 7 %}
             <option value="{{make.make}}"></option>
             {% endif %}
             {% endfor %}
@@ -54,22 +76,8 @@
 
 
         </div>
-<!-- 
-        <div class="mb-3" id="laptop_div">
-          <label for="exampleInputEmail1" class="form-label">Make</label>
-          {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
-          <input list="make_list" name = "make" class="form-control" id="make" aria-describedby="emailHelp">
-          <datalist id="make_list" >
-            <option>Select Make</option>
-            {% for make in make_context %}
-            <option value="{{make.make}}"></option>
-            {% endfor %}
-        </datalist>
 
-
-        </div>
-
-
+<!--
         <div class="mb-3" id="tablet_div">
           <label for="exampleInputEmail1" class="form-label">Make</label>
           {% comment %} name always used in views.py functions and ID always used in front end and html {% endcomment %}
@@ -97,7 +105,7 @@
         </datalist>
 
 
-        </div> -->
+        </div> --> 
 
         {% comment %} Model dropdown starts here  {% endcomment %}
         <div class="mb-3">
@@ -148,8 +156,14 @@
     var x = document.getElementById("mobile_div");
     x.style.display = "block"
   }
-  
 
+
+  function my_laptop(){
+    var l = document.getElementById("laptop_div");
+    l.style.display = "block"
+  }
+  
+ 
 </script>
 
 {% endblock %}

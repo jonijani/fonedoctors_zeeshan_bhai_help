@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">fonedoctors</a>
+      <a class="navbar-brand" href="{% url 'dashboard' %}">fonedoctors</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,10 +14,9 @@
                   Clients
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_client' %}">Search Client</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_customer' %}">Add new client</a></li>
+                
                 </ul>
               </li>
 
@@ -27,10 +26,10 @@
                   Jobs
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_job' %}">Add Job</a></li>
+                  <li><a class="dropdown-item" href="{% url 'search_job' %}">Search Job</a></li>
+                  
+              
                 </ul>
               </li>
           <li class="nav-item dropdown">
@@ -38,10 +37,9 @@
               Inventories
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Add something here </a></li>
+              <li><a class="dropdown-item" href="#">Add something here</a></li>
+              
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -49,37 +47,33 @@
               Retail
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Add something here</a></li>
+              <li><a class="dropdown-item" href="#">Add something here</a></li>
+            
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Admin
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link active" href="http://localhost:8000/admin/login/?next=/admin/" tabindex="-1" aria-disabled="true">Admin</a>
           </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome {{request.user}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li> <a href= "{% url 'logout_user' %}" class="btn btn-primary">Logout </a></li>
-              
-              
-          </li>
+        </ul>
 
           
-          {% else %}
-          <a class="btn btn-primary">Login </a>
+
+          <form action="{% url 'logout_user' %}" method="POST">
+            <strong> <a style="color: red;"> {% if user.is_authenticated %}
+             Hello &nbsp;{{ user.username}}&nbsp;&nbsp;
+           </a> </strong>
+               {% csrf_token %}
+           
+               <button class="btn btn-outline-success" type="submit">Logout</button>
+           
+             
+             {% else %}
+             
+           
+           
+             {% endif %}
+           </form>  &nbsp;&nbsp;
 
 
           {% endif %}
@@ -90,7 +84,17 @@
 
         
          
-        {% comment %} <form class="d-flex">
+        {% comment %} 
+
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li> <a href= "{% url 'logout_user' %}" class="btn btn-primary">Logout </a></li>
+              
+              
+          </li>
+        
+        
+        
+        <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form> {% endcomment %}
