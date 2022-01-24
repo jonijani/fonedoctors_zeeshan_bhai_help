@@ -10,7 +10,7 @@ def add_job(request):
     make = Make.objects.all()
     model = Model.objects.all()
     context = {'customers':customers,'device_context':device,  'make_context':make, 'model_context':model}
-    return render(request,'job_created.html',context)
+    return render(request,'add_job.html',context)
     
 
 def dashboard(request):

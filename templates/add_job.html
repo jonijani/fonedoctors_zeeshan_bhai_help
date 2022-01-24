@@ -28,11 +28,29 @@
           <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
             {% for device in device_context %}
             
-            <input type="radio" class="btn-check" onclick="my_mobile()" name="device_mobile" value="{{device.devices}}" id="{{device.devices}}" autocomplete="off" >
+            <input type="radio" class="btn-check" onclick=make_dropdown_{{device.devices}}() name="device_mobile" value="{{device.devices}}" id="{{device.get_id}}" autocomplete="off" >
+            {% comment %} line 31 id="{{device.get_id}}" get_id came from models to shpw specific id for device  {% endcomment %}
             <!--line 30 id should be unique when we pass variables in the id it wil get uniqe name -->
 
 
-            <label class="btn btn-outline-primary" for = "{{device.devices}}" >{{device.devices}}</label>
+            <label class="btn btn-outline-primary" for = "{{device.get_id}}" >{{device.devices}}</label>
+            {% comment %} line 40 my_dropdown_{{device.devices}}  device.devices will pick each button on forloop{% endcomment %}
+            <!-- in line 49 first comes from for loop variable and 2nd make comes from models fields/column -->
+            <script>
+              function make_dropdown_{{device.devices}}(){  
+                var id = document.getElementById('make_list');
+                
+                id.innerHTML -= '<option>Select Make</option>{% for make in make_context %}{% if make.device.id == 6 %}<option value="{{make.make}}"></option>{% endif %}{% endfor %}'
+
+                id.innerHTML += '<option>Select Make</option>{% for make in make_context %}{% if make.device.id == device.get_id %}<option value="{{make.make}}"></option>{% endif %}{% endfor %}'
+                
+                
+                
+              
+              }
+            
+            
+            </script>
             {% endfor %}
           
            
@@ -41,19 +59,13 @@
         </div>
 
         <!-- dropdown menu for Make and this div s  -->
-        <div class="mb-3" id="mobile_div" style="display: none;">
+        <div class="mb-3" id="mobile_div" >
           <label for="exampleInputEmail1" class="form-label">Make {{make.make_device.all }}</label>
           <!--name always used in views.py functions and ID always used in front end and html,javascripts -->
           <input list="make_list" name = "make" class="form-control" id="make_mobile" aria-describedby="emailHelp">
           <datalist id="make_list" >
-            <option>Select Make</option>
-            {% for make in make_context %}
             
-            {% if make.device.id == 6 %}
-            <option value="{{make.make}}"></option>
-            <!-- in line 49 first comes from for loop variable and 2nd make comes from models fields/column -->
-            {% endif %}
-            {% endfor %}
+            
         </datalist>
 
 
@@ -61,21 +73,7 @@
       
       
        
-        <div class="mb-3" id="laptop_div">
-          <label for="exampleInputEmail1" class="form-label">Make {{make.make_device.all }}</label>
-          <!-- name always used in views.py functions and ID always used in front end and html -->
-          <input list="make_list" name = "make" class="form-control" id="make_laptop" aria-describedby="emailHelp">
-          <datalist id="make_list" >
-            <option>Select Make</option>
-            {% for make in make_context %}
-            {% if make.device.id == 7 %}
-            <option value="{{make.make}}"></option>
-            {% endif %}
-            {% endfor %}
-        </datalist>
-
-
-        </div>
+       
 
 <!--
         <div class="mb-3" id="tablet_div">
@@ -151,19 +149,6 @@
   </div>
 
 
-<script>
-  function my_mobile(){
-    var x = document.getElementById("mobile_div");
-    x.style.display = "block"
-  }
 
-
-  function my_laptop(){
-    var l = document.getElementById("laptop_div");
-    l.style.display = "block"
-  }
-  
- 
-</script>
 
 {% endblock %}
