@@ -20,6 +20,9 @@ class Make(models.Model):
     def __str__(self):
         return self.make
 
+    def get_make_id(self):
+        return self.id # with this functuon we can call specific ID for Make column
+
 class Model(models.Model):
     make = models.ForeignKey(Make,on_delete=models.CASCADE) 
     model = models.CharField(max_length=250)
