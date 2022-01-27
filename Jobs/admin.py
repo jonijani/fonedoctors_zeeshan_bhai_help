@@ -4,6 +4,10 @@ from .models import *
 class DevicesAdmin(admin.ModelAdmin):
     list_display = ['id', 'devices', 'customer']
 
-admin.site.register([Make,Model])
+class JobsAdmin(admin.ModelAdmin):
+    list_display = ['customer', 'device', 'make', 'model', 'imei', 'fault', 'payment_status']
+
+admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status, ])
 admin.site.register(Devices,DevicesAdmin)
+admin.site.register(Jobs,JobsAdmin)
 
