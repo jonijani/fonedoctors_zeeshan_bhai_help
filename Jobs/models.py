@@ -1,5 +1,6 @@
 from django.db import models
 from customer.models import *
+from django.contrib.auth.models import User
 
 
 
@@ -99,7 +100,8 @@ class Jobs(models.Model):
     job_status = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_job_status')
     collection_time = models.DateTimeField()
     payment_status = models.CharField(choices= PAYMENT_STATUS, max_length=250)
-    #payment_status = models.ForeignKey(Payment_status,on_delete = models.CASCADE, related_name = 'job_payment_status')
+    created_date = models.DateTimeField(null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
 
 
 

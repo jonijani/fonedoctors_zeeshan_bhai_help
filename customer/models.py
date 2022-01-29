@@ -1,8 +1,10 @@
 from django.db import models
 import datetime
+from django.contrib.auth.models import User
 
 
 class Customer(models.Model):
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     phone  = models.IntegerField()
@@ -11,6 +13,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=250)
     postcode = models.CharField(max_length=250)
     created_date = models.DateTimeField(null=True, blank= True)#
+    created_by = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
 
     def full_name(self):
         return f"{self.first_name} {self.last_name}"

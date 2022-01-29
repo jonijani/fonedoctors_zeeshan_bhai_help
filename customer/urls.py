@@ -20,8 +20,10 @@ from .import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('add_customer', views.add_customer, name='add_customer'),
-    path('New_client_created', views.New_client_created, name='New_client_created'),
+    #path('New_client_created', views.New_client_created, name='New_client_created'),
+    path('Client_little_info', views.Client_little_info, name='Client_little_info'),
     path('search_client', views.search_client, name='search_client'),
+    path('Client_detail_info', views.Client_detail_info, name='Client_detail_info'),
     
 
 ]
