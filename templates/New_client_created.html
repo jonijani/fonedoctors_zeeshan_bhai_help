@@ -22,7 +22,7 @@
     <tbody>
         
       <tr>
-        <td> <a href="{% url 'Client_detail_info' %}"> {{ customer_context.id }} </a></td>
+        <td> <a href="{% url 'Client_detail_info' customer_context.id %} "> {{ customer_context.id }} </a></td>
         <td>{{customer_context.first_name}}</td>
         <td>{{customer_context.last_name}}</td>
         <td>{{customer_context.phone}}</td>
@@ -39,7 +39,7 @@
     
   </table>
 
-  <center><button  type="button" class="btn btn-primary"> <a class="text-white" href="{% url 'Client_detail_info' %}">View Client</a></button>
+  <center><button  type="button" class="btn btn-primary"> <a class="text-white" href="{% url 'Client_detail_info' customer_context.id  %}">View Client</a></button>
     <button type="button" class="btn btn-primary"> <a class="text-white" href="{% url 'add_direct_job' customer_context.id %}">Add Job</a></button></center>
   
   

@@ -26,9 +26,12 @@
 
     
     <tbody>
+    
+        
         
       <tr>
-        <td> <a href="#"> {{ job_created_context.id }} </a></td>
+          {% comment %} <a href url is diverted to job detail page > {% endcomment %}
+        <td> <a href="#"> {{ job_created_context.id }} </a></td> 
         <td>{{job_created_context.make}}</td>
         <td>{{job_created_context.model}}</td>
         <td>{{job_created_context.imei}}</td>
@@ -38,8 +41,7 @@
         <td>{{job_created_context.created_by}}</td>
         
       </tr>
-      
-    </tbody>
+     
 
    
     

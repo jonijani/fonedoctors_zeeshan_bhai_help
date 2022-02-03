@@ -23,7 +23,8 @@ urlpatterns = [
     #path('New_client_created', views.New_client_created, name='New_client_created'),
     path('Client_little_info', views.Client_little_info, name='Client_little_info'),
     path('search_client', views.search_client, name='search_client'),
-    path('Client_detail_info', views.Client_detail_info, name='Client_detail_info'),
+    path('Client_detail_info/<str:id>', views.Client_detail_info, name='Client_detail_info'),
+    path('update_client_details/<str:id>', views.update_client_details, name='update_client_details'),
     
 
 ]

@@ -21,5 +21,6 @@ urlpatterns = [
     path('',include('Jobs.urls')),
     path('',include('customer.urls')),
     path('',include('Auth.urls')),
+    path('',include('Inventories.urls'))
 
 ]

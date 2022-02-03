@@ -18,7 +18,7 @@ def add_customer(request):
         address = request.POST.get('address')
         postcode = request.POST.get('postcode')
         created_date = datetime.datetime.now()
-        created_by = request.user
+        created_by = request.user#created_by new variable to bring authrosed user in request.user
         data = Customer(first_name=first_name,last_name=last_name,phone=phone, landline=landline,email=email,address=address, postcode=postcode , created_date=created_date , created_by=created_by  )#first parameter is column name(database) 2nd paarmeter is variable which will take data to database.
         #line 23 data is object for customer class which will call inbuilt function.save and save data to Customer table
         
@@ -32,11 +32,6 @@ def add_customer(request):
         return render(request, 'add_client_form.html')
 
 
-# def New_client_created(request):
-#     last_client_created = Customer.objects.filter('created_date').last()
-#     print(last_client_created)
-#     context = {'last_client_created_context':last_client_created}
-#     return render(request,'New_client_created.html',context)
 
 
 def Client_little_info(request):
@@ -44,10 +39,15 @@ def Client_little_info(request):
     context = {'search_clients_context':find_client}
     return render(request, 'Client_little_info.html',context )
 
-def Client_detail_info(request):
-    
-    return render(request, 'Client_detail_info.html')
+def Client_detail_info(request,id):
+    customer = Customer.objects.get(id=id)
+    context = {'customer_context':customer}
+    return render(request, 'Client_detail_info.html',context)
 
+def update_client_details(request,id):
+    customer = Customer.objects.get(id=id)
+    context = {'customer_context':customer}
+    return render(request,'update_client_details.html',context)
     
 def search_client(request):
     return render(request,'search_client.html')

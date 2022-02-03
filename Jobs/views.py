@@ -121,7 +121,7 @@ def add_direct_job(request,id):
         eta = request.POST.get('eta')
         payment = request.POST.get('payment_status')
 
-        customer_id = Customer.objects.get(id=customer1)# customer_id is new variable than Customer class and in brackets id comes from html value="id" and customer is variable in line 35.
+        customer_id = Customer.objects.get(id=customer1)# customer_id is new variable than Customer class and in brackets id comes from html value="id" and customer is variable in line 108.
         device_id = Devices.objects.get(devices=device)
         make_id = Make.objects.get(make=make)
         model_id = Model.objects.get(model=model)
@@ -130,7 +130,7 @@ def add_direct_job(request,id):
         sale_item_id = Sale_item.objects.get(sale_item=sale_item)
         network_id = Network.objects.get(network=network)
         job_status_id = Job_status.objects.get(job_status=job_status)
-        job_created_date = datetime.datetime.now()
+        job_created_date = datetime.datetime.now() #craeted new variable to store current time ( datetime.datetime.now())
         job_created_by = request.user
 
         data = Jobs(customer=customer_id,#customer is column or field from classes and customer_id from line 51.
@@ -153,7 +153,7 @@ def add_direct_job(request,id):
         
                
         data.save()            
-        job = Jobs.objects.get(id=data.id)
+        job = Jobs.objects.get(id=data.id)#here we fetch last job added and show to user
         context = {'job_created_context':job}            
         return render(request, 'job_created.html', context)
     
@@ -172,6 +172,28 @@ def dashboard(request):
 def search_job(request):
     return render(request,'search_job.html')
 
+def job_detail_page(request,id):
+    detail_page = Jobs.objects.get(id=id)
+    
+    context = {'detail_page_context':detail_page}
+    return render(request,'job_detail_page.html',context)
+
+def job_update_page(request):
+    return render(request,'job_update_page.html')
+
+
+
+def reciept_generated_page(request):
+    return render(request,'reciept_generated_page.html')
+
+
+def send_email_page(request):
+    return render(request,'send_email_page.html')
+
+    
+
+def send_text_page(request):
+    return render(request,'send_text_page.html')
 
 
 
