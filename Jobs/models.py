@@ -12,7 +12,7 @@ class Devices(models.Model):
         return self.devices
 
     def get_id(self):
-        return self.id # with this functuon we can call specific ID for devices column
+        return self.id # with this function we can call specific ID for devices column
 
 class Make(models.Model):
     device = models.ForeignKey(Devices,on_delete=models.CASCADE, related_name='make_device')
