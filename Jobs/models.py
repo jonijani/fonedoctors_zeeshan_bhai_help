@@ -108,4 +108,14 @@ class Jobs(models.Model):
     def __str__(self):
         return self.model.model
 
-    
+
+
+class Job_update(models.Model):
+
+    job = models.ForeignKey(Jobs,on_delete = models.CASCADE, related_name = 'job_update')
+    description_update = models.TextField()
+    updated_on = models.DateTimeField(null=True, blank=True)
+    updated_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.job.device.devices

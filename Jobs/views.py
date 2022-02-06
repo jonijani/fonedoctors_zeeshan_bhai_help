@@ -68,7 +68,7 @@ def add_job(request):
                     imei=imei,
                     accessories=acessories_id,
                     sale_item=sale_item_id,
-                    passcode=customer_id,
+                    passcode=passcode,
                     network=network_id,
                     cost=cost,
                     job_status=job_status_id,
@@ -142,7 +142,7 @@ def add_direct_job(request,id):
                     imei=imei,
                     accessories=acessories_id,
                     sale_item=sale_item_id,
-                    passcode=customer_id,
+                    passcode=passcode,
                     network=network_id,
                     cost=cost,
                     job_status=job_status_id,
@@ -159,9 +159,6 @@ def add_direct_job(request,id):
     
             
              
-            
-
-        
     
 
 def dashboard(request):
@@ -174,6 +171,7 @@ def search_job(request):
 
 def job_detail_page(request,id):
     detail_page = Jobs.objects.get(id=id)
+
     
     context = {'detail_page_context':detail_page}
     return render(request,'job_detail_page.html',context)
