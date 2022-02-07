@@ -169,15 +169,41 @@ def dashboard(request):
 def search_job(request):
     return render(request,'search_job.html')
 
+
+
 def job_detail_page(request,id):
     detail_page = Jobs.objects.get(id=id)
-
-    
     context = {'detail_page_context':detail_page}
     return render(request,'job_detail_page.html',context)
 
-def job_update_page(request):
-    return render(request,'job_update_page.html')
+
+
+def job_update_page(request,id):
+    if request.method == "GET":
+        job_update = Jobs.objects.get(id=id)
+        customers = Customer.objects.get(id=id)
+        device = Devices.objects.all()
+        make = Make.objects.all()
+        model = Model.objects.all()
+        fault = Fault.objects.all()
+        accessories = Accessories.objects.all()
+        sale_item = Sale_item.objects.all()
+        network = Network.objects.all()
+        job_status = Job_status.objects.all()
+        #payment = payment_status.objects.all()  'payment_status_context':payment,  
+        context = {'customers':customers,
+                    'device_context':device, 
+                    'make_context':make, 
+                    'model_context':model,
+                    'fault_context':fault ,
+                    'accessories_context':accessories, 
+                    'sale_item_context':sale_item , 
+                    'network_context':network,
+                    'job_status_context': job_status,
+                    'job_update_context':job_update
+                    }
+    
+    return render(request,'job_update_page.html', context)
 
 
 
