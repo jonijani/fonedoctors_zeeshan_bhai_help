@@ -120,11 +120,11 @@
             <label for="network_list" class="form-label"> <strong> Network </strong></label>
             <!--name always used in views.py functions and ID always used in front end and html,javascripts -->
             <select id="network_list" class="form-control" name = "network">
-              
+                
               {% for network in network_context %}
               <option {% if job_update_context.network.network == network.network %} selected {% endif %}  value="{{network.network}}">{{network.network}}</option>
   
-              {% endfor %}
+              {% endfor %}]
               
             </select>
   
@@ -148,15 +148,14 @@
         <div class="mb-3"  >
             
           <label for="job_status_list" class="form-label"> <strong> Job Status </strong></label>
-          <input list="job_status_list" {% if job_update_context.job_status.job_status == job_status.job_status %} selected {% endif %} name = "job_status" class="form-control" id="job_status_id" >
-          <datalist id="job_status_list" >
-            <option></option>
+          <select id="job_status_list" class="form-control" Name="job_status" >
+            
             {% for job_status in job_status_context %}
             <option {% if job_update_context.job_status.job_status == job_status.job_status %} selected {% endif %} value="{{job_status.job_status}}">{{job_status.job_status}}</option>
   
             {% endfor %}
             
-        </datalist>
+          </select>
   
   
       </div>
@@ -166,45 +165,35 @@
       <!-- Passcode ETA starts here  -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> <strong>ETA </strong></label>
-        <input type="datetime-local" {% if job_update_context.collection_time.collection_time == collection_time.collection_time %} selected {% endif %} name = "eta" class="form-control" id="eta_id" >
+        <input type="datetime-local" value="07-02-2022 17:20" name = "eta" class="form-control" id="eta_id" >
   
         
         
       </div>
+      
   
   
   
-      <!-- Payment status field starts here -->
-      <!-- <div class="mb-3"  >
-            
-        <label for="payment_status_list" class="form-label">Payment Status</label>
-        <input list="payment_status_list" name = "payment_status" class="form-control" id="payment_status_id" >
-        <datalist id="payment_status_list" >
-          <option value="Payment status" ></option>
-          {% for payment in payment_status_context %}
-          <option value="{{payment.payment_status}}"></option>
   
-          {% endfor %}
-          
-      </datalist>
-  
-  
-    </div> -->
+    </div> 
     <div class="mb-3"  >
             
       <label for="payment_status_list" class="form-label"> <strong> Payment Status </strong> </label>
-      <input list="payment_status_list" {% if job_update_context.payment_status.payment_status == payment_status.payment_status %} selected {% endif %}  name = "payment_status" class="form-control" id="payment_status_id" >
-      <datalist id="payment_status_list" >
-        
-        <option value="PAID" ></option>
-        <option value="UNPAID"></option>
-        <option value="CREDIT NOTE"></option>
-        <option value="REFUND"></option>
-        
-    </datalist>
+      <select id="payment_status_list" name = "payment_status" class="form-control">
+
+        {% for payment_status in job_status_context %}
+
+        <option value="PAID" {% if job_update_context.payment_status == "PAID" %} selected {% endif %} >PAID</option>
+        <option value="UNPAID" {% if job_update_context.payment_status == "UNPAID" %} selected {% endif %}>UNPAID</option>
+        <option value="CREDIT NOTE" {% if job_update_context.payment_status == "CREDIT NOTE" %} selected {% endif %}>CREDIT NOTE</option>
+        <option value="REFUND" {% if job_update_context.payment_status == "REFUND" %} selected {% endif %}>REFUND</option>
+
+        {% endfor %}
+      </select>
   
   
   </div> 
+  
   
   
   

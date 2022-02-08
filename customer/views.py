@@ -3,6 +3,7 @@ from .models import Customer
 from Jobs.models import  Jobs
 import datetime
 from django.http import HttpResponse
+from django.db.models import Q
 
 
 
@@ -76,9 +77,25 @@ def update_client_details(request,id):
 
 
 def search_client(request):
-    all_clients = Customer.objects.all()
-    context = {'all_clients_context':all_clients}
-    return render(request,'search_client.html', context )
+    if request.method =="POST":
+        searched = request.POST['searched']
+        lookup = (Q(id__icontains=searched)
+        |Q(first_name__icontains=searched)
+        |Q(last_name__icontains=searched)
+        |Q(phone__icontains=searched)
+        |Q(landline__icontains=searched)
+        |Q(email__icontains=searched)
+        |Q(address__icontains=searched)
+        |Q(postcode__icontains=searched))
+        
+        result = Customer.objects.filter(lookup)
+    
+        context = {'all_clients_context':result, 'searched':searched}
+        return render(request,'search_client.html', context )
+
+    else:
+        return render(request,'search_client.html' )
+
 
 
 

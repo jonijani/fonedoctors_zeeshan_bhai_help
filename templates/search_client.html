@@ -4,6 +4,7 @@
 
 <h3>Search client page</h3>
 
+
 <form class="d-flex" method="POST" action="{% url 'search_client' %}" style="align-self: center;">
     {% csrf_token %}
     <input class="form-control me-2" type="search" placeholder="Search Client" aria-label="Search" name="searched">
@@ -23,7 +24,8 @@
         
 
     </tr>
-
+    
+    <h3 style="color: red;">Search result for <strong> {{ searched }} </strong></h3>
     {% for show_result in  all_clients_context %}
 
     
@@ -44,8 +46,10 @@
 
     </tr>
     {% endfor %}
+    
 
 </table>
+
 
 
 {% endblock %}

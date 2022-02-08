@@ -180,7 +180,10 @@ def job_detail_page(request,id):
 
 def job_update_page(request,id):
     if request.method == "GET":
-        job_update = Jobs.objects.get(id=id)
+        if Job_update.objects.filter(job_update=id).exists():
+            job_update = Job_update.objects.filter(job_update=id)
+        else:
+            job_update = Jobs.objects.get(id=id)
         customers = Customer.objects.get(id=id)
         device = Devices.objects.all()
         make = Make.objects.all()

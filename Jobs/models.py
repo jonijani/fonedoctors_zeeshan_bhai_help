@@ -106,16 +106,33 @@ class Jobs(models.Model):
 
 
     def __str__(self):
-        return self.model.model
+        return str(self.id)
 
 
 
 class Job_update(models.Model):
 
-    job = models.ForeignKey(Jobs,on_delete = models.CASCADE, related_name = 'job_update')
-    description_update = models.TextField()
+    job_update = models.ForeignKey(Jobs,on_delete = models.CASCADE, related_name = 'job_update' , null = True, blank=True)
+    customer_update = models.ForeignKey(Customer,on_delete = models.CASCADE, related_name = 'customer_update', null = True, blank=True)
+    device_update =  models.ForeignKey(Devices,on_delete = models.CASCADE, related_name = 'device_update', null = True, blank=True)
+    make_update = models.ForeignKey(Make,on_delete = models.CASCADE, related_name = 'make_update', null = True, blank=True)
+    model_update = models.ForeignKey(Model,on_delete = models.CASCADE, related_name = 'model_update', null = True, blank=True)
+    fault_update =  models.ForeignKey(Fault,on_delete = models.CASCADE, related_name = 'fault_update', null = True, blank=True)
+    description_update = models.TextField(null = True, blank=True)
+    imei_update = models.CharField(max_length=250, null = True, blank=True)
+    accessories_update = models.ForeignKey(Accessories,on_delete = models.CASCADE, related_name = 'accessories_update', null = True, blank=True)
+    sale_item_update = models.ForeignKey(Sale_item,on_delete = models.CASCADE, related_name = 'update_sale_item', null = True, blank=True)
+    passcode_update = models.CharField(max_length=250, null = True, blank=True)
+    network_update = models.ForeignKey(Network,on_delete = models.CASCADE, related_name = 'network_update', null = True, blank=True)
+    cost_update = models.IntegerField(null = True, blank=True)
+    job_status_update = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_status_update', null = True, blank=True)
+    collection_time_update = models.DateTimeField(null = True, blank=True)
+    payment_status_update = models.CharField(choices= PAYMENT_STATUS, max_length=250, null = True, blank=True)
     updated_on = models.DateTimeField(null=True, blank=True)
     updated_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.job.device.devices
+        return str(self.job_update.id)
+
+
+
