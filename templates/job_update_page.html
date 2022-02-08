@@ -24,7 +24,7 @@
   
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"> <strong> IMEI </strong></label>
-            <input type="text" value="{{job_update_context.imei}}" name = "imei" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" value="{{job_update_context.imei}}" name = "imei_update" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   
             
             
@@ -38,7 +38,7 @@
               <div class="col">
           
           <div class="form-check mb-4 col-md-6">
-            <input class="form-check-input"  {% if job_update_context.fault.fault == fault.fault %} checked {% endif %} name= "faults" type="checkbox" value="{{ fault.fault }}" id="faults_{{ fault.fault }}">
+            <input name="fault_update"class="form-check-input"  {% if job_update_context.fault.fault == fault.fault %} checked {% endif %}  type="checkbox" value="{{ fault.fault }}" id="faults_{{ fault.fault }}">
             <label class="form-check-label" for="faults_{{ fault.fault }}">
               {{ fault.fault }}
             </label>
@@ -52,7 +52,7 @@
           <!-- descrition starts here  -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"> <strong> Description </strong></label>
-            <textarea name = "description" {{job_update_context.description}}  class="form-control" id="descrition_id" > </textarea>
+            <textarea name = "description_update" {{job_update_context.description}}  class="form-control" id="descrition_id" > </textarea>
   
           </div>
   
@@ -67,7 +67,7 @@
               <div class="col">
           
           <div class="form-check mb-4 col-md-6">
-            <input class="form-check-input" {% if job_update_context.accessories.accessories == accessories.accessories %} checked {% endif %} name="accessories" type="checkbox" value="{{ accessories.accessories }}" id="accessories_{{ accessories.accessories }}">
+            <input class="form-check-input" {% if job_update_context.accessories.accessories == accessories.accessories %} checked {% endif %} name="accessories_update" type="checkbox" value="{{ accessories.accessories }}" id="accessories_{{ accessories.accessories }}">
             <label class="form-check-label" for="accessories_{{ accessories.accessories }}">
               {{ accessories.accessories }}
             </label>
@@ -89,7 +89,7 @@
                <div class="col">
            
            <div class="form-check mb-4 col-md-6">
-             <input class="form-check-input" {% if job_update_context.sale_item.sale_item == sale_item.sale_item %} checked {% endif %} name="sale_item" type="checkbox" value="{{ sale_item.sale_item }}" id="sale_item_{{ sale_item.sale_item }}">
+             <input class="form-check-input" {% if job_update_context.sale_item.sale_item == sale_item.sale_item %} checked {% endif %} name="sale_item_update" type="checkbox" value="{{ sale_item.sale_item }}" id="sale_item_{{ sale_item.sale_item }}">
              <label class="form-check-label" for="sale_item_{{ sale_item.sale_item }}">
               {{ sale_item.sale_item }}
              </label>
@@ -103,7 +103,7 @@
           <!-- Passcode field starts here  -->
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"> <strong> Passcode </strong></label>
-            <input type="text" value="{{job_update_context.passcode}}" name = "passcode" class="form-control" id="passcode" >
+            <input type="text" value="{{job_update_context.passcode}}" name = "passcode_update" class="form-control" id="passcode" >
   
             
             
@@ -119,7 +119,7 @@
             
             <label for="network_list" class="form-label"> <strong> Network </strong></label>
             <!--name always used in views.py functions and ID always used in front end and html,javascripts -->
-            <select id="network_list" class="form-control" name = "network">
+            <select id="network_list" class="form-control" name = "network_update">
                 
               {% for network in network_context %}
               <option {% if job_update_context.network.network == network.network %} selected {% endif %}  value="{{network.network}}">{{network.network}}</option>
@@ -136,7 +136,7 @@
         <!-- Passcode Cost starts here  -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"> <strong> Cost </strong></label>
-          <input type="number" value="{{job_update_context.cost}}" name = "cost" class="form-control" id="cost" >
+          <input type="number" value="{{job_update_context.cost}}" name = "cost_update" class="form-control" id="cost" >
   
           
           
@@ -148,7 +148,7 @@
         <div class="mb-3"  >
             
           <label for="job_status_list" class="form-label"> <strong> Job Status </strong></label>
-          <select id="job_status_list" class="form-control" Name="job_status" >
+          <select id="job_status_list" class="form-control" Name="job_status_update" >
             
             {% for job_status in job_status_context %}
             <option {% if job_update_context.job_status.job_status == job_status.job_status %} selected {% endif %} value="{{job_status.job_status}}">{{job_status.job_status}}</option>
@@ -165,7 +165,7 @@
       <!-- Passcode ETA starts here  -->
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label"> <strong>ETA </strong></label>
-        <input type="datetime-local" value="07-02-2022 17:20" name = "eta" class="form-control" id="eta_id" >
+        <input type="datetime-local" value="07-02-2022 17:20" name = "eta_update" class="form-control" id="eta_id" >
   
         
         
@@ -179,7 +179,7 @@
     <div class="mb-3"  >
             
       <label for="payment_status_list" class="form-label"> <strong> Payment Status </strong> </label>
-      <select id="payment_status_list" name = "payment_status" class="form-control">
+      <select id="payment_status_list" name = "payment_status_update" class="form-control">
 
         {% for payment_status in job_status_context %}
 
