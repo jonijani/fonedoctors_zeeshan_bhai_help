@@ -3,6 +3,7 @@ from customer.models import *
 from .models import *
 from django.http import HttpResponse
 import random
+import datetime
 
 
 def add_job(request):
@@ -173,16 +174,17 @@ def search_job(request):
 
 def job_detail_page(request,id):
     detail_page = Jobs.objects.get(id=id)
+    now = datetime.datetime.now()
     job_update_table = Job_update.objects.filter(job_update=id)
-    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table}
+    Fprint = Fingerprints.objects.filter(job_fprint=id)# job_fprint comes from models as its related to that specific job
+    update_finger_print= Fingerprints(user_fprint=request.user, date_time_fprint=now.strftime("%m/%d/%Y, %H:%M:%S"), job_fprint=detail_page)
+    update_finger_print.save()
+    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table, 'Fprint_context':Fprint }
     return render(request,'job_detail_page.html',context)
 
 
 
 def job_update_page(request,id):
-    
-        
-    
     job_update = Jobs.objects.get(id=id)
     customers = Customer.objects.get(id=id)
     device = Devices.objects.all()
@@ -258,6 +260,8 @@ def job_update_page(request,id):
         
     
     return render(request,'job_update_page.html', context)
+
+
 
 
 

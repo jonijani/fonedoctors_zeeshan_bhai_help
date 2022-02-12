@@ -135,4 +135,9 @@ class Job_update(models.Model):
         return str(self.job_update.id)
 
 
+class Fingerprints(models.Model):
+    user_fprint = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    date_time_fprint = models.CharField(max_length=250, null=True, blank=True)
+    job_fprint = models.ForeignKey(Jobs,on_delete = models.CASCADE , null = True, blank=True)
+
 

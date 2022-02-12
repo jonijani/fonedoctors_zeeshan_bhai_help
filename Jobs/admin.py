@@ -7,7 +7,7 @@ class DevicesAdmin(admin.ModelAdmin):
 class JobsAdmin(admin.ModelAdmin):
     list_display = ['customer','id', 'device', 'make', 'model', 'imei', 'fault', 'payment_status']
 
-admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update])
+admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update, Fingerprints])
 admin.site.register(Devices,DevicesAdmin)
 admin.site.register(Jobs,JobsAdmin)
 
