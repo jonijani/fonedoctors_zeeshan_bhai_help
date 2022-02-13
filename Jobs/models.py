@@ -141,3 +141,26 @@ class Fingerprints(models.Model):
     job_fprint = models.ForeignKey(Jobs,on_delete = models.CASCADE , null = True, blank=True)
 
 
+class Reciepts(models.Model):
+    reciept = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

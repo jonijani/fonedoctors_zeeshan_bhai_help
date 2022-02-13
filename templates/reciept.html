@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Reciept_generated_page helllo</h3>
+
+{% for reciept in reciept %}
+
+
+<p><h3><strong>Job ID :{{reciept.reciept.id}}</strong></h3></p>
+<p>Reciept NO : {{reciept.id}}</p>
+<p>Device :{{reciept.reciept.device}}</p>
+<p>Model :{{reciept.reciept.model}}</p>
+<p>Make :{{reciept.reciept.make}}</p>
+<p>Fault :{{reciept.reciept.fault}}</p>
+<p>IMEI  :{{reciept.reciept.imei}}</p>
+<p>Date :{{reciept.reciept.created_date}}</p>
+<p>User : {{reciept.reciept.created_by}}</p>
+
+
+
+<p> customer Name :{{reciept.reciept.customer.full_name}}</p>
+<p>Phone : {{reciept.reciept.customer.phone}}</p>
+<p>Email :{{reciept.reciept.customer.email}}</p>
+<p>Description :{{reciept.reciept.description}}</p>
+
+<p><strong>Cost :{{reciept.reciept.cost}} {{reciept.reciept.payment_status}}</strong></p>
+
+
+{% endfor %}
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -74,8 +74,13 @@ def add_job(request):
                     cost=cost,
                     job_status=job_status_id,
                     collection_time=eta,
-                    payment_status=payment ).save()
-        return redirect('job_created') 
+                    payment_status=payment )
+        data.save() 
+        job_data =  Jobs.objects.get(id=data.id)          
+        reciept = Reciepts(reciept=job_data)
+        reciept.save()
+
+        return redirect('reciept',data.id) 
 
 
 
@@ -153,7 +158,10 @@ def add_direct_job(request,id):
                     created_by=job_created_by )
         
                
-        data.save()            
+        data.save() 
+        job_data =  Jobs.objects.get(id=data.id)          
+        reciept = Reciepts(reciept=job_data)
+        reciept.save()           
         job = Jobs.objects.get(id=data.id)#here we fetch last job added and show to user
         context = {'job_created_context':job}            
         return render(request, 'job_created.html', context)
@@ -174,8 +182,8 @@ def search_job(request):
 
 def job_detail_page(request,id):
     detail_page = Jobs.objects.get(id=id)
-    now = datetime.datetime.now()
     job_update_table = Job_update.objects.filter(job_update=id)
+    now = datetime.datetime.now()
     Fprint = Fingerprints.objects.filter(job_fprint=id)# job_fprint comes from models as its related to that specific job
     update_finger_print= Fingerprints(user_fprint=request.user, date_time_fprint=now.strftime("%m/%d/%Y, %H:%M:%S"), job_fprint=detail_page)
     update_finger_print.save()
@@ -244,7 +252,8 @@ def job_update_page(request,id):
                     updated_by=job_created_by )
         
                
-        data.save() 
+        data.save()
+        return redirect('job_detail_page',id=id)
     context = {'customers':customers,
                     'device_context':device, 
                     'make_context':make, 
@@ -257,7 +266,6 @@ def job_update_page(request,id):
                     'job_update_context':job_update
                     
                     }
-        
     
     return render(request,'job_update_page.html', context)
 
@@ -265,8 +273,10 @@ def job_update_page(request,id):
 
 
 
-def reciept_generated_page(request):
-    return render(request,'reciept_generated_page.html')
+def reciept(request,id):
+    reciept = Reciepts.objects.filter(reciept=id)
+    context = {'reciept':reciept}
+    return render(request,'reciept.html',context)
 
 
 def send_email_page(request):

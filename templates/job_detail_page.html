@@ -50,20 +50,19 @@
     <div class="col  bg-light  col-md-4">
       <h3 class="text-white bg-primary text-center">Actions</h3>
 
-      <a class="btn btn-primary btn-lg col-md-12 mb-2"
-        href="{% url 'job_update_page' detail_page_context.id %}">Update</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">View Reciept</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2"href="{% url 'job_update_page' detail_page_context.id %}">Update</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2" href="{% url 'reciept' detail_page_context.id  %}">View Reciept</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2" href="#">Client details</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">Complete</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">Update</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">View Reciept</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">Client details</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">Complete</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2">Job Rebook</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2">Send Email</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2">Send text</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2">Order Parts</a>
 
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">Update</a>
+      <!-- <a class="btn btn-primary btn-lg col-md-12 mb-2">Update</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">View Reciept</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">Client details</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2">Complete</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2">Complete</a> -->
 
     </div>
   </div>
@@ -112,7 +111,7 @@
 
       <div class="col col-md-4 border-dark text-center"> <h3 class="bg-primary text-white">Finger prints</h3>
 
-        {% for Fprint in Fprint_context %}
+        {% for Fprint in Fprint_context reversed %}
         <span> {{Fprint.user_fprint}} </span><span> &nbsp;&nbsp;  {{Fprint.date_time_fprint}}   </span>
         <br/>
         {% endfor %}
