@@ -4,6 +4,7 @@ from .models import *
 from django.http import HttpResponse
 import random
 import datetime
+from django.core.mail import send_mail
 
 
 def add_job(request):
@@ -74,7 +75,9 @@ def add_job(request):
                     cost=cost,
                     job_status=job_status_id,
                     collection_time=eta,
-                    payment_status=payment )
+                    payment_status=payment,
+                    created_by = request.user,
+                    created_date = datetime.datetime.now() )
         data.save() 
         job_data =  Jobs.objects.get(id=data.id)          
         reciept = Reciepts(reciept=job_data)
@@ -205,7 +208,7 @@ def job_update_page(request,id):
     job_status = Job_status.objects.all()
     #payment = payment_status.objects.all()  'payment_status_context':payment,  
         
-    if request.method == "POST":    
+    if request.method == "POST":
         #customer1 = request.POST.get('customer')#customer in brackets comes from html Name = customer
         #device = request.POST.get('device_mobile')
         #make = request.POST.get('make')
@@ -279,7 +282,16 @@ def reciept(request,id):
     return render(request,'reciept.html',context)
 
 
-def send_email_page(request):
+def send_email_page(request,id, reciept_id):
+    customer = Customer.objects.get(id=id)
+    job = Jobs.objects.get(id=reciept_id)
+    send_mail(
+    'hello please find your reciept',
+    f'{job.id} {job.device} {job.make} {job.model} {job.imei}  {job.fault} {job.cost} {job.payment_status} {job.payment_status} {job.created_by}',
+    'learningdjango1@gmail.com',
+    [customer.email],
+    fail_silently=True,
+)
     return render(request,'send_email_page.html')
 
     
