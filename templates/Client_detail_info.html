@@ -61,7 +61,7 @@
       <tbody>
       {% for jobs_context in jobs_context %}
          <tr>
-          <th>{{jobs_context.id}}</th>
+          <th><a href="{% url 'job_detail_page' jobs_context.id %}">{{jobs_context.id}}</a></th>
           <td>{{jobs_context.imei}}</td>
           <td>{{jobs_context.make}}</td>
           <td>{{jobs_context.model}}</td>

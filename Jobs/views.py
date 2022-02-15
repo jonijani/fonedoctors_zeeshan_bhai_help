@@ -5,6 +5,9 @@ from django.http import HttpResponse
 import random
 import datetime
 from django.core.mail import send_mail
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 
 def add_job(request):
@@ -284,20 +287,32 @@ def reciept(request,id):
 
 def send_email_page(request,id, reciept_id):
     customer = Customer.objects.get(id=id)
-    job = Jobs.objects.get(id=reciept_id)
-    send_mail(
-    'hello please find your reciept',
-    f'{job.id} {job.device} {job.make} {job.model} {job.imei}  {job.fault} {job.cost} {job.payment_status} {job.payment_status} {job.created_by}',
-    'learningdjango1@gmail.com',
-    [customer.email],
-    fail_silently=True,
-)
+    reciept = Reciepts.objects.filter(id=reciept_id)
+    context = {'reciept':reciept}
+    
+
+    subject = 'Please find Reciept for your device...'
+    html_message = render_to_string('reciept_email.html', context)
+    plain_message = strip_tags(html_message)
+    from_email = 'learningdjango1@gmail.com'
+    to = customer.email
+
+    mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
     return render(request,'send_email_page.html')
 
+def contact_by_email(request):
     
+    return render(request,'contact_by_email.html')    
+
+
+
 
 def send_text_page(request):
     return render(request,'send_text_page.html')
+
+
+
 
 
 

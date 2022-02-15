@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Contact customer by email page</h3>
+
+<form method='POST' action="#">
+    {% csrf_token %}
+
+    <form>
+
+        
+          
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label">Select email</label>
+            <select id="disabledSelect" class="form-select">
+              <option value="1"> Hi 1: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
+              <option value="2"> Hi 2: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
+              <option value="3"> Hi 3: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
+              <option value="4"> Hi 4: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
+              <option value="5"> Hi 5: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
+
+            </select>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Send Email</button>
+        
+      </form>
+
+
+</form>
+
+
+
+
+{% endblock %}

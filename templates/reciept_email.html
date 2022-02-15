@@ -1,12 +1,10 @@
-{% extends 'base.html' %}
 
-{% block content %}
-<h3>Reciept_generated_page helllo</h3>
+
 
 {% for reciept in reciept %}
 <div class="col col-md-4 ">
 {% comment %} first reciept is in JOB ID line is varibale from loop and other reciept from table colum/fields {% endcomment %}
-<p><h3><strong>Job ID :<a href="{% url 'job_detail_page' reciept.reciept.id  %}">{{reciept.reciept.id}}</a></strong></h3></p>
+<p><h3><strong>Job ID :{{reciept.reciept.id}}</strong></h3></p>
 <p>Reciept NO : {{reciept.id}}</p>
 <p>Device :{{reciept.reciept.device}}</p>
 <p>Model :{{reciept.reciept.model}}</p>
@@ -65,16 +63,15 @@
     environmentally friendly manner.
 </p>
 
+<p>Address : London , UK</p>
 
 
-<a class="btn btn-primary btn-lg col-md-12 mb-2">Print Reciept</a>
-<a class="btn btn-primary btn-lg col-md-12 mb-2" href='/send_email_page/{{reciept.reciept.customer.id}}/{{reciept.id}}'  >Send By Email</a>
-<a class="btn btn-primary btn-lg col-md-12 mb-2">Send by Text</a>
-</div>
+
+
 
 {% endfor %}
 
-{% endblock %}
+
 
 
 
