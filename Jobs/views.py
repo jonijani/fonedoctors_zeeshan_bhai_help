@@ -8,6 +8,8 @@ from django.core.mail import send_mail
 from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.db.models import Q
+
 
 
 def add_job(request):
@@ -183,6 +185,28 @@ def dashboard(request):
 
 def search_job(request):
     return render(request,'search_job.html')
+    
+
+# def search_job(request):
+    
+#     if request.method =="POST":
+        
+#         searched = request.POST['searched']
+#         lookup = (Q(id__icontains=searched)
+#         |Q(make__icontains=searched)
+#         |Q(model__icontains=searched)
+#         |Q(imei__icontains=searched)
+#         |Q(created_date__icontains=searched)
+#         |Q(job_status__icontains=searched))
+        
+#         result = Jobs.objects.filter(lookup)
+#         context = {'result_context':result, 'searched':searched}
+#         return render(request,'search_job.html',context)
+#     else:
+#         return render(request,'search_job.html' )
+
+
+
 
 
 
@@ -301,11 +325,24 @@ def send_email_page(request,id, reciept_id):
 
     return render(request,'send_email_page.html')
 
-def contact_by_email(request):
-    
-    return render(request,'contact_by_email.html')    
 
 
+
+def contact_by_email(request,id):
+    e = Contact_by_email.objects.filter(id=id)
+   
+    context = {'e_context':e}
+    return render(request,'contact_by_email.html', context)
+
+def complete(request,id):
+    complete_job = Jobs.objects.get(id=id)
+    context = {'complete_job_context':complete_job}
+    return render(request,'complete.html',context)
+
+def job_deliver(request,id):
+    j_deliver = Jobs.objects.get(id=id)
+    context = {'j_deliver_context':j_deliver}
+    return render(request,'retail_sale_page.html',context)
 
 
 def send_text_page(request):

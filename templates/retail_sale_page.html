@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>retail_sale_page.html</h3>
+
+
+    <div class="col border border-dark bg-light col-md-4 col-mb-4 ">
+        job id : {{j_deliver_context.id}} <br>
+        IMEI : {{j_deliver_context.imei}} <br>
+        Make : {{j_deliver_context.make}} <br>
+        Model : {{j_deliver_context.model}} <br>
+        Cost: {{j_deliver_context.cost}} <br><br>
+
+        <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+<br>
+    <table class="col border border-dark bg-light col-md-4">
+       <h5>Customer Cart</h5>
+          <tr>
+              <td>Total Amount</td>  
+              <td>£0.00</td> 
+          </tr>
+
+          <tr>
+                <td>Payment Type</td> 
+                <td><select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Select Payment Type</option>
+                    <option value="1">Cash</option>
+                    <option value="2">Card</option>
+                    <option value="3">Bacs</option>
+                    <option value="3">Amax</option>
+                </select></td>  
+        </tr>
+
+        <tr>
+            <td></td>  
+            
+        </tr>
+
+        <tr>
+            <td><button type="button" class="btn btn-primary">Complete Sale</button></td>  
+            
+        </tr>
+        
+      </table>
+      <br>
+      
+
+
+      
+
+
+{% endblock %}

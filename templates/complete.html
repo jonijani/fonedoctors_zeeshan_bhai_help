@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+
+<h3>Complete  page</h3>
+
+<div class="form-floating col col-12 border bg-light ">
+    <div class="form-floating col col-4 ">
+        <div class="input-group mb-3">
+          JOB ID :  {{ complete_job_context.id }}
+          </div>
+    
+        <div class="input-group mb-3">
+            Make :  {{ complete_job_context.make }}
+        </div>
+
+
+        <div class="input-group mb-3">
+            Model :  {{ complete_job_context.model }}
+        </div>
+
+
+
+        <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Waranty sticker</span>
+        <input type="#" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+
+        
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Select part Number</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          
+    
+        
+
+        <br>
+        
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Select part</option>
+            <option value="1">YES</option>
+            <option value="2">NO</option>
+            <option value="3">Our Own Part</option>
+        </select>
+      
+
+<br>
+        <div>
+            <textarea class="form-control" name="Complete_area_name" placeholder="Leave a comment here" id="Complete_area_id"></textarea>
+        </div>
+      <br>
+
+      
+       
+        <button type="button" class="btn btn-primary"> Complete</button>
+  </div>
+
+    
+
+</div>
+
+{% endblock %}

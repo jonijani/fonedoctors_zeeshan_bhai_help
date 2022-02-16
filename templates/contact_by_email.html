@@ -2,16 +2,32 @@
 
 {% block content %}
 <h3>Contact customer by email page</h3>
+Client ID : <br>
+Full name : <br>
+Job ID : <br>
 
-<form method='POST' action="#">
+
+{% for e in e_context %}
+    
+            Client ID : {{e.email.customer.id}}
+            <br>
+            Full name : {{e.email.customer.full_name}}
+                <br>
+            Sending Email to : {{e.email.customer.email}} 
+            <br>
+            Job ID :   {{e.email.id}}  
+                <br> 
+                <br> 
+{% endfor %}
+
+ <form method='POST' action="#" class="col col mg-10">
     {% csrf_token %}
+    
 
-    <form>
 
-        
-          
+        <!-- <label  class="form-label">Select email</label>
           <div class="mb-3">
-            <label for="disabledSelect" class="form-label">Select email</label>
+            
             <select id="disabledSelect" class="form-select">
               <option value="1"> Hi 1: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
               <option value="2"> Hi 2: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
@@ -20,13 +36,18 @@
               <option value="5"> Hi 5: Hope you are well. Your device (Job ID 115147) is ready for collection. Feel free to contact us on 02074039111 or drop us an email at support@fonedoctors.com should you have any queries regarding your repair.Cheers, Patient Care Team fone doctors 3 Kings Head Yard London ,SE1 1NA ,02074039111</option>
 
             </select>
-          </div>
+          </div>  -->
+
+          <p><div class="form-group green-border-focus col-10"> 
+              <input type="text" name = "email_subject_name"class="form-control" id="email_subject_id" placeholder="Subject">      </p>
+
           
+            <textarea class="form-control" name= "email_area_name" id="email_area_id" rows="5" placeholder="Email Area"></textarea>
+          </div>
+
+          <br>
           <button type="submit" class="btn btn-primary">Send Email</button>
         
-      </form>
-
-
 </form>
 
 

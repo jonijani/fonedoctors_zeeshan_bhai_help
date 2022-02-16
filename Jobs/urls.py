@@ -9,12 +9,14 @@ urlpatterns = [
     path('add_direct_job/<str:id>', views.add_direct_job, name='add_direct_job'),
     path('job_detail_page/<str:id>', views.job_detail_page, name='job_detail_page'),
     path('job_update_page/<str:id>', views.job_update_page, name='job_update_page'),
+    path('complete/<str:id>', views.complete, name='complete'),
+    #path('job_deliver/<str:id>', views.job_deliver, name='job_deliver'),
     path('reciept/<str:id>', views.reciept, name='reciept'),
 
     #Email
     path('send_email_page/<str:id>/<str:reciept_id>', views.send_email_page, name='send_email_page'),
     path('send_text_page/', views.send_text_page, name='send_text_page'),
-    path('contact_by_email/', views.contact_by_email, name='contact_by_email')
+    path('contact_by_email/<str:id>', views.contact_by_email, name='contact_by_email')
     
     
 

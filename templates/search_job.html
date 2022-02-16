@@ -3,6 +3,49 @@
    {% block content %} 
    
    <h3>Search job page</h3>
+
+   <form class="d-flex" method="POST" action="{% url 'search_job' %}" style="align-self: center;">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search job" aria-label="Search" name="searched">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <h3 style="color: red;">Search result for <strong> {{ searched }} </strong></h3> 
+
+
+
+
+
+   <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Job ID </th>
+          <th scope="col">IMEI</th>
+          <th scope="col">Make</th>
+          <th scope="col">Model</th>
+          <th scope="col">Reciept No</th>
+          <th scope="col">Created on</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+{% for show_result in result_context %}
+
+
+
+        <tr>
+          
+          <td>{{ show_result.id }}</td>
+            <td>{{ show_result.imei }}</td>
+            <td>{{ show_result.make }}</td>
+            <td>{{ show_result.model }}</td>
+            <td>{{ show_result.created_date }}</td>
+         
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
    
    
    

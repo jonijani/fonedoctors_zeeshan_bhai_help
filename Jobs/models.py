@@ -141,8 +141,22 @@ class Fingerprints(models.Model):
     job_fprint = models.ForeignKey(Jobs,on_delete = models.CASCADE , null = True, blank=True)
 
 
+
+
 class Reciepts(models.Model):
     reciept = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+
+
+
+class Contact_by_email(models.Model):
+    email = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.email.id} {self.email.customer.first_name} {self.email.customer.email}'
+
+
+
+
     
 
 
