@@ -12,6 +12,7 @@ from django.db.models import Q
 
 
 
+
 def add_job(request):
     if request.method == "GET":
         customers = Customer.objects.all()
@@ -328,16 +329,45 @@ def send_email_page(request,id, reciept_id):
 
 
 
-def contact_by_email(request,id):
-    e = Contact_by_email.objects.filter(id=id)
-   
-    context = {'e_context':e}
+def contact_by_email(request,id,job_id):
+    e = Jobs.objects.filter(customer=id)
+    j_id = Jobs.objects.get(id=job_id)
+    if request.method == "POST":
+        subject = request.POST.get("email_subject_name")
+        message = request.POST.get("email_area_name")
+        send_mail(
+            subject,
+            message,
+            'learningdjango1@gmail.com',
+            [j_id.customer.email],
+            fail_silently=False,
+)
+
+
+
+    context = {'e_context':e, 'j_id_context':j_id}
     return render(request,'contact_by_email.html', context)
+
+# def complete(request,id):
+#     complete_job = Jobs.objects.get(id=id)
+#     context = {'complete_job_context':complete_job}
+#     return render(request,'complete.html',context)
 
 def complete(request,id):
     complete_job = Jobs.objects.get(id=id)
+    if request.method == "POST":
+        complete_job_name = request.POST.get('Complete_area_name')
+        data = Complete_job(c_job=complete_job  ,complete_job = complete_job_name)
+        data.save()
+        
+        return redirect('job_detail_page',id=id)
+
+
+
+
     context = {'complete_job_context':complete_job}
     return render(request,'complete.html',context)
+
 
 def job_deliver(request,id):
     j_deliver = Jobs.objects.get(id=id)

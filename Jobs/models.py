@@ -38,8 +38,17 @@ PAYMENT_STATUS = (
     ('CREDIT NOTE', 'CREDIT NOTE'),
     ('REFUND', 'REFUND')
     
-
 )
+
+TEST_ALL_FUNCTIONS = (
+    ('MIC', 'MIC'),
+    ('SCREEN', 'SCREEN'),
+    ('HEARING SPEAKER', 'HEARING SPEAKER'),
+    ('LOUD SPEAKER', 'LOUD SPEAKER'),
+    ('WIFI', 'WIFI')
+    
+)
+
 
 class Fault(models.Model):
     fault =  models.CharField(max_length=250)
@@ -148,16 +157,39 @@ class Reciepts(models.Model):
 
 
 
-class Contact_by_email(models.Model):
-    email = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+# class Contact_by_email(models.Model):
+#     email = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
 
+#     def __str__(self):
+#         return f'{self.email.id} {self.email.customer.first_name} {self.email.customer.email}'
+
+
+
+TEST_ALL_FUNCTIONS = (
+    ('MIC', 'MIC'),
+    ('SCREEN', 'SCREEN'),
+    ('HEARING SPEAKER', 'HEARING SPEAKER'),
+    ('LOUD SPEAKER', 'LOUD SPEAKER'),
+    ('WIFI', 'WIFI')
+    
+)
+
+class Complete_job(models.Model):
+    c_job = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+    complete_job = models.TextField(null = True, blank=True)
+    
     def __str__(self):
-        return f'{self.email.id} {self.email.customer.first_name} {self.email.customer.email}'
-
-
-
+        #return f'{self.c_job.id} {self.c_job.make} {self.c_job.make} '
+        return self.complete_job
 
     
+    
+    
+
+
+
+
+
 
 
 

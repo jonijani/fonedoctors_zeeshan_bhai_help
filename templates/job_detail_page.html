@@ -56,7 +56,7 @@
       <a class="btn btn-primary btn-lg col-md-12 mb-2" href="{% url 'complete' detail_page_context.id %}">Complete</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2" href="{% url 'retail_sale_page' detail_page_context.id  %}">Deliver</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">Job Rebook</a>
-      <a class="btn btn-primary btn-lg col-md-12 mb-2" href="{% url 'contact_by_email' detail_page_context.customer.id  %}">Send Email</a>
+      <a class="btn btn-primary btn-lg col-md-12 mb-2" href="{% url 'contact_by_email' detail_page_context.customer.id detail_page_context.id  %}">Send Email</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">Send text</a>
       <a class="btn btn-primary btn-lg col-md-12 mb-2">Order Parts</a>
 

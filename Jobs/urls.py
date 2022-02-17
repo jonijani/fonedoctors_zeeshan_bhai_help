@@ -16,7 +16,7 @@ urlpatterns = [
     #Email
     path('send_email_page/<str:id>/<str:reciept_id>', views.send_email_page, name='send_email_page'),
     path('send_text_page/', views.send_text_page, name='send_text_page'),
-    path('contact_by_email/<str:id>', views.contact_by_email, name='contact_by_email')
+    path('contact_by_email/<str:id>/<str:job_id>', views.contact_by_email, name='contact_by_email')
     
     
 

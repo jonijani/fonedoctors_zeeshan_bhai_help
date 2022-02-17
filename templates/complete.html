@@ -3,33 +3,37 @@
 
 
 <h3>Complete  page</h3>
-
+<form method="POST" action= "#">
+    {% csrf_token %}
 <div class="form-floating col col-12 border bg-light ">
     <div class="form-floating col col-4 ">
+        {% comment %} {% for complete_job_context in complete_job_context %} {% endcomment %}
+        
+        
         <div class="input-group mb-3">
           JOB ID :  {{ complete_job_context.id }}
           </div>
     
         <div class="input-group mb-3">
-            Make :  {{ complete_job_context.make }}
+            Make :  {{ complete_job_context.c_job.make }}
         </div>
 
 
         <div class="input-group mb-3">
-            Model :  {{ complete_job_context.model }}
+            Model :  {{ complete_job_context.c_job.model }}
         </div>
 
+        {% comment %} {% endfor %} {% endcomment %}
 
-
-        <div class="input-group mb-3">
+        {% comment %} <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Waranty sticker</span>
         <input type="#" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
+        </div> {% endcomment %}
 
 
         
 
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            {% comment %} <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option selected>Select part Number</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -37,28 +41,32 @@
             </select>
           
     
-        
+         {% endcomment %}
 
         <br>
         
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+        {% comment %} <select class="form-select form-select-sm" aria-label=".form-select-sm example">
             <option selected>Select part</option>
             <option value="1">YES</option>
             <option value="2">NO</option>
             <option value="3">Our Own Part</option>
         </select>
-      
+       {% endcomment %}
 
-<br>
+        <br>   
+    
+    
         <div>
-            <textarea class="form-control" name="Complete_area_name" placeholder="Leave a comment here" id="Complete_area_id"></textarea>
+            <textarea class="form-control" {{ complete_job_context.c_job.description }} name="Complete_area_name" placeholder="Leave a comment here" id="Complete_area_id"></textarea>
         </div>
       <br>
 
       
        
-        <button type="button" class="btn btn-primary"> Complete</button>
-  </div>
+        <button type="submit" class="btn btn-primary"> Complete</button>
+    </form> 
+    <div>    
+  
 
     
 
