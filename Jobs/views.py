@@ -218,7 +218,9 @@ def job_detail_page(request,id):
     Fprint = Fingerprints.objects.filter(job_fprint=id)# job_fprint comes from models as its related to that specific job
     update_finger_print= Fingerprints(user_fprint=request.user, date_time_fprint=now.strftime("%m/%d/%Y, %H:%M:%S"), job_fprint=detail_page)
     update_finger_print.save()
-    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table, 'Fprint_context':Fprint }
+
+    job_complete_v =  Complete_job.objects.filter(c_job=id).last()
+    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table, 'Fprint_context':Fprint , 'job_complete_v_context':job_complete_v}
     return render(request,'job_detail_page.html',context)
 
 
@@ -345,8 +347,8 @@ def contact_by_email(request,id,job_id):
 
 
 
-    context = {'e_context':e, 'j_id_context':j_id}
-    return render(request,'contact_by_email.html', context)
+    context = {'e_context':e, 'j_id_context':j_id, }
+    return render(request,'contact_by_email.html', context )
 
 # def complete(request,id):
 #     complete_job = Jobs.objects.get(id=id)
@@ -357,16 +359,20 @@ def complete(request,id):
     complete_job = Jobs.objects.get(id=id)
     if request.method == "POST":
         complete_job_name = request.POST.get('Complete_area_name')
-        data = Complete_job(c_job=complete_job  ,complete_job = complete_job_name)
+        
+        data = Complete_job(c_job=complete_job  ,complete_update = complete_job_name, checked=True, completed_by=request.user)
         data.save()
         
-        return redirect('job_detail_page',id=id)
-
-
-
-
+        return redirect('job_detail_page',id)
     context = {'complete_job_context':complete_job}
     return render(request,'complete.html',context)
+
+
+
+
+
+
+
 
 
 def job_deliver(request,id):

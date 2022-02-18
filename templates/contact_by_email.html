@@ -37,10 +37,18 @@
           </div>  -->
 
           <p><div class="form-group green-border-focus col-10"> 
-              <input type="text" name = "email_subject_name"class="form-control" id="email_subject_id" placeholder="Subject">      </p>
+             <input type="text"  name = "email_subject_name"class="form-control" id="email_subject_id" placeholder="Subject">   </p>
 
           
-            <textarea class="form-control" name= "email_area_name" id="email_area_id" rows="5" placeholder="Email Area">Hello {{ e.customer.full_name }} your Device {{ j_id_context.make }} {{j_id_context.model}} is ready for collection .for more infor please contact us  </textarea>
+            <textarea class="form-control" name= "email_area_name" id="email_area_id" rows="5" placeholder="Email Area">Hello {{ e.customer.full_name }}
+              Job ID :  {{j_id_context.id}} 
+              Make : {{ j_id_context.make }}
+             Model : {{j_id_context.model}}  
+              is ready for collection .for more infor please contact us at 00000000000
+            
+            Thanks 
+            Regards  
+            </textarea>
           </div>
 
           <br>

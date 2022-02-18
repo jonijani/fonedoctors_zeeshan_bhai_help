@@ -176,11 +176,13 @@ TEST_ALL_FUNCTIONS = (
 
 class Complete_job(models.Model):
     c_job = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
-    complete_job = models.TextField(null = True, blank=True)
+    complete_update = models.TextField(null = True, blank=True)
+    checked = models.BooleanField(default=False)
+    completed_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
     
     def __str__(self):
         #return f'{self.c_job.id} {self.c_job.make} {self.c_job.make} '
-        return self.complete_job
+        return self.complete_update
 
     
     
