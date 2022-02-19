@@ -286,6 +286,7 @@ def job_update_page(request,id):
         
                
         data.save()
+        job_cost = Jobs.objects.filter(id=id).update(cost=cost,payment_status= payment, job_status= job_status_id)
         return redirect('job_detail_page',id=id)
     context = {'customers':customers,
                     'device_context':device, 
@@ -359,9 +360,20 @@ def complete(request,id):
     complete_job = Jobs.objects.get(id=id)
     if request.method == "POST":
         complete_job_name = request.POST.get('Complete_area_name')
+        cost_com = request.POST.get('cost_com_name')
+        payment_status_com_name = request.POST.get('payment_status_com_name')
+        job_status = Job_status.objects.get(id=3)
         
-        data = Complete_job(c_job=complete_job  ,complete_update = complete_job_name, checked=True, completed_by=request.user)
+        
+        data = Complete_job(c_job=complete_job,
+                             complete_update = complete_job_name,
+                             checked=True, 
+                             completed_by=request.user,
+                             cost_com=cost_com,
+                             payment_status_com = payment_status_com_name,
+                             completed_on=datetime.datetime.now())
         data.save()
+        job_cost = Jobs.objects.filter(id=id).update(cost=cost_com, job_status = job_status)
         
         return redirect('job_detail_page',id)
     context = {'complete_job_context':complete_job}

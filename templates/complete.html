@@ -15,13 +15,15 @@
           </div>
     
         <div class="input-group mb-3">
-            Make :  {{ complete_job_context.c_job.make }}
+            Make :  {{ complete_job_context.make }}
         </div>
 
 
         <div class="input-group mb-3">
-            Model :  {{ complete_job_context.c_job.model }}
+            Model :  {{ complete_job_context.model }}
         </div>
+
+        {% comment %} {% endfor %} {% endcomment %}
 
         {% comment %} {% endfor %} {% endcomment %}
 
@@ -53,7 +55,34 @@
         </select>
        {% endcomment %}
 
-        <br>   
+        <br> 
+          {% comment %} cost input {% endcomment %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> <strong> Cost : {{ complete_job_context.cost }}</strong></label>
+            <input type="number" value="{{ complete_job_context.cost }}" name = "cost_com_name" class="form-control" id="cost_com_id" >
+    
+          </div>
+
+          
+          {% comment %} <div class="mb-3"  >
+            
+            <label for="payment_status_list" class="form-label"> <strong> Payment Status </strong> </label>
+            <select id="payment_status_list" name = "payment_status_com_name" class="form-control">
+      
+              {% for payment_status in complete_job_context %}
+      
+              <option value="PAID" {% if complete_job_context.payment_status == "PAID" %} selected {% endif %} >PAID</option>
+              <option value="UNPAID" {% if complete_job_context.payment_status == "UNPAID" %} selected {% endif %}>UNPAID</option>
+              <option value="CREDIT NOTE" {% if complete_job_context.payment_status == "CREDIT NOTE" %} selected {% endif %}>CREDIT NOTE</option>
+              <option value="REFUND" {% if complete_job_context.payment_status == "REFUND" %} selected {% endif %}>REFUND</option>
+      
+              {% endfor %}
+            </select>
+        
+        
+        </div>  {% endcomment %}
+
+
     
     
         <div>

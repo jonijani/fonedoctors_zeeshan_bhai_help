@@ -177,8 +177,12 @@ TEST_ALL_FUNCTIONS = (
 class Complete_job(models.Model):
     c_job = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
     complete_update = models.TextField(null = True, blank=True)
-    checked = models.BooleanField(default=False)
+    checked = models.BooleanField(default=False)# its to show complete button as long as job is not completed.
     completed_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    #job_status_com = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_status_update', null = True, blank=True)
+    payment_status_com = models.CharField(choices= PAYMENT_STATUS, max_length=250, null = True, blank=True)
+    cost_com = models.CharField(max_length=250, null = True, blank=True)
+    completed_on = models.DateTimeField(null=True, blank=True)
     
     def __str__(self):
         #return f'{self.c_job.id} {self.c_job.make} {self.c_job.make} '
