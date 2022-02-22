@@ -188,7 +188,9 @@ class Complete_job(models.Model):
         #return f'{self.c_job.id} {self.c_job.make} {self.c_job.make} '
         return self.complete_update
 
-    
+
+
+
     
     
 

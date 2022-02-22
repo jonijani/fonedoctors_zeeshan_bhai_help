@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Customer cart html</h3>
+
+<table class="col border border-dark bg-light col-md-4">
+    <h5>Customer Cart</h5>
+    
+
+    {% for j_deliver_context in cart_context %}
+
+    <tr>
+        <td>Job id : {{j_deliver_context.c_cart.id}} <br></td>  
+     </tr>
+     <tr>
+        <td>IMEI : {{j_deliver_context.c_cart.imei}} <br></td>  
+     </tr>
+     <tr>
+        <td>Make  : {{j_deliver_context.c_cart.make}} <br></td>  
+     </tr>
+     <tr>
+        <td>Model : {{j_deliver_context.c_cart.model}} <br></td>  
+     </tr>
+
+       <tr>
+           <td>Total Amount</td>  
+          <td>  £ {{j_deliver_context.c_cart.cost}} </td>
+       </tr>
+
+       {% endfor %}
+
+       
+        
+
+
+   
+
+
+       <tr>
+             <td>Payment Type</td> 
+             <td><select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                 <option selected>Select Payment Type</option>
+                 <option value="1">Cash</option>
+                 <option value="2">Card</option>
+                 <option value="3">Bacs</option>
+                 <option value="3">Amax</option>
+             </select></td>  
+     </tr>
+
+     <tr>
+         <td></td>  
+         
+     </tr>
+
+     <tr>
+         <td> <a class="btn btn-primary  col-md-12 mb-2" href="#">Complete Sale</a></td>  
+         
+     </tr>
+     
+   </table>
+
+
+
+
+{% endblock %}

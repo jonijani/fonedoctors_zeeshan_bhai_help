@@ -9,6 +9,7 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.db.models import Q
+from Retail.models import  *
 
 
 
@@ -389,7 +390,7 @@ def complete(request,id):
 
 def job_deliver(request,id):
     j_deliver = Jobs.objects.get(id=id)
-    context = {'j_deliver_context':j_deliver}
+    context = {'j_deliver_context_j':j_deliver}
     return render(request,'retail_sale_page.html',context)
 
 

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Daily sale report page.html</h3>
+
+
+
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">JOB ID </th>
+        <th scope="col">Name </th>
+        <th scope="col">Reciept No</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Payment Type</th>
+        
+        <th scope="col">User</th>
+        <th scope="col">Date</th>
+        
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for c_cart_context in c_cart_context  %}
+      <tr>
+        <th scope="row">{{c_cart_context.c_cart.id}}</th>
+        <td>{{c_cart_context.c_cart.customer.full_name}}</td>
+        <td>{{c_cart_context.id}}</td>
+        <td>{{c_cart_context.c_cart.cost}}</td>
+        <td>{{c_cart_context.payment_type}}</td>
+        <td>{{c_cart_context.c_cart.sale_person}}</td>
+        <td>{{c_cart_context.c_cart.date}}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}
