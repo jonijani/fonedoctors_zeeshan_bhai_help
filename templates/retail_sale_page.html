@@ -7,7 +7,7 @@
     
 
     <div class="col border border-dark bg-light col-md-4 col-mb-4 ">
-        {% comment %} {% for j_deliver_context in j_deliver_context %} {% endcomment %}
+        
 
         Job id : {{j_deliver_context.id}} <br>
         IMEI : {{j_deliver_context.imei}} <br>
@@ -15,10 +15,12 @@
         Model : {{j_deliver_context.model}} <br>
        <p name="Cost_name" id="cost_id"> Cost: £ {{j_deliver_context.cost}} <br><br></p>
          
+       <form method="POST" action="#">
+           {% csrf_token %}
+           <input type="text" style="display: none;" value={{j_deliver_context.cost}} name="cost_name"> 
+       <button id="mybtn" class="btn btn-primary" > Add to cart</button>
        
-       <a id="mybtn" class="btn btn-primary" href="{% url 'customer_cart' j_deliver_context.id  %}" >Add to cart</a>
-       {% comment %} {% endfor %} {% endcomment %}
-       
+       </form>
     </div>
 <br>
 

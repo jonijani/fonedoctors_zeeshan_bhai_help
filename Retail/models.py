@@ -17,8 +17,19 @@ class Customer_cart(models.Model):
     sale_person = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
 
-    def __str__(self):
-        return f"{self.c_cart.id} {self.deliver_cost} {self.payment_type}"
+    
+
+    def get_make(self):
+        return self.c_cart.make
+
+    def get_imei(self):
+        return self.c_cart.imei
+
+    def get_model(self):
+        return self.c_cart.model
+
+    def get_job_id(self):
+        return self.c_cart.id
 
 
 class Daily_sale(models.Model):

@@ -7,43 +7,45 @@
     <h5>Customer Cart</h5>
     
 
-    {% for j_deliver_context in cart_context %}
+    {% for cart_context in cart_context %}
 
     <tr>
-        <td>Job id : {{j_deliver_context.c_cart.id}} <br></td>  
+        <td>Job id : {{cart_context.c_cart.id}} <br></td>  
      </tr>
      <tr>
-        <td>IMEI : {{j_deliver_context.c_cart.imei}} <br></td>  
+        <td>IMEI : {{cart_context.c_cart.imei}} <br></td>  
      </tr>
      <tr>
-        <td>Make  : {{j_deliver_context.c_cart.make}} <br></td>  
+        <td>Make  : {{cart_context.c_cart.make}} <br></td>  
      </tr>
      <tr>
-        <td>Model : {{j_deliver_context.c_cart.model}} <br></td>  
+        <td>Model : {{cart_context.c_cart.model}} <br></td>  
      </tr>
 
        <tr>
            <td>Total Amount</td>  
-          <td>  £ {{j_deliver_context.c_cart.cost}} </td>
+          <td>  £ {{cart_context.c_cart.cost}} </td>
        </tr>
 
-       {% endfor %}
+      
 
        
         
 
 
    
-
+       <form method="POST" action="#">
+        {% csrf_token %}
+        <input type="text" name="updated_cost_name" value="{{cart_context.c_cart.cost}}" style="display:none" >
+        
 
        <tr>
              <td>Payment Type</td> 
-             <td><select class="form-select form-select-sm" aria-label=".form-select-sm example">
+             <td><select class="form-select form-select-sm" name="payment_type_name"  aria-label=".form-select-sm example">
                  <option selected>Select Payment Type</option>
-                 <option value="1">Cash</option>
-                 <option value="2">Card</option>
-                 <option value="3">Bacs</option>
-                 <option value="3">Amax</option>
+                 {% for payment_type_context in payment_type_context %}
+                 <option value="{{ payment_type_context.id }}" >{{ payment_type_context.payment }}</option>
+                 {% endfor %}
              </select></td>  
      </tr>
 
@@ -51,11 +53,15 @@
          <td></td>  
          
      </tr>
+     
 
      <tr>
-         <td> <a class="btn btn-primary  col-md-12 mb-2" href="#">Complete Sale</a></td>  
+         <td> <button type="submit" class="btn btn-primary  col-md-12 mb-2" >Complete Sale</button></td>  
          
      </tr>
+    </form>
+
+    {% endfor %}
      
    </table>
 
