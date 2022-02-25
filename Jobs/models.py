@@ -155,6 +155,9 @@ class Fingerprints(models.Model):
 class Reciepts(models.Model):
     reciept = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return str(self.id)
+    
 
 
 # class Contact_by_email(models.Model):

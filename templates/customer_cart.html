@@ -41,7 +41,7 @@
 
        <tr>
              <td>Payment Type</td> 
-             <td><select class="form-select form-select-sm" name="payment_type_name"  aria-label=".form-select-sm example">
+             <td><select required class="form-select form-select-sm" name="payment_type_name"  aria-label=".form-select-sm example">
                  <option selected>Select Payment Type</option>
                  {% for payment_type_context in payment_type_context %}
                  <option value="{{ payment_type_context.id }}" >{{ payment_type_context.payment }}</option>

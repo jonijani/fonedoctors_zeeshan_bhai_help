@@ -309,7 +309,7 @@ def job_update_page(request,id):
 
 
 def reciept(request,id):
-    reciept = Reciepts.objects.filter(reciept=id)
+    reciept = Reciepts.objects.filter(reciept=id).last()
     context = {'reciept':reciept}
     return render(request,'reciept.html',context)
 

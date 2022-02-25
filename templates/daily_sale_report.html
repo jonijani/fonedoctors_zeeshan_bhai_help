@@ -24,15 +24,15 @@
       </tr>
     </thead>
     <tbody>
-        {% for c_cart_context in c_cart_context  %}
+        {% for c_cart_context in c_cart_context reversed %}
       <tr>
         <th scope="row">{{c_cart_context.c_cart.id}}</th>
         <td>{{c_cart_context.c_cart.customer.full_name}}</td>
-        <td>{{c_cart_context.id}}</td>
+        <td>{{c_cart_context.reciept}}</td>
         <td>{{c_cart_context.c_cart.cost}}</td>
         <td>{{c_cart_context.payment_type}}</td>
-        <td>{{c_cart_context.c_cart.sale_person}}</td>
-        <td>{{c_cart_context.c_cart.date}}</td>
+        <td>{{c_cart_context.sale_person}}</td>
+        <td>{{c_cart_context.date}}</td>
         
       </tr>
       {% endfor %}

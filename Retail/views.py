@@ -11,7 +11,7 @@ def retail_sale_page(request,id):
 
     if request.method == 'POST':
         cost_name = request.POST.get("cost_name")
-        data = Customer_cart(c_cart=j_deliver, deliver_cost=cost_name)
+        data = Customer_cart(c_cart=j_deliver, deliver_cost=cost_name, sale_person=request.user, date=datetime.datetime.now())
         data.save()
         
         customer_cart = Customer_cart.objects.filter(id=data.id).first()
@@ -33,14 +33,13 @@ def customer_cart(request,id):
         payment_type_name = request.POST.get("payment_type_name")
 
         payment_tpye_v = Payment_type.objects.get(id=payment_type_name)
-        cart_save = Customer_cart.objects.filter(id=id).update(payment_type=payment_tpye_v, deliver_cost=updated_cost_name)
-
-    
-
-
-
-         
-
+        
+        temp = Customer_cart.objects.get(id=id)
+        job = temp.c_cart
+        f_reciept = Reciepts(reciept=job)
+        f_reciept.save()
+        cart_save = Customer_cart.objects.filter(id=id).update(payment_type=payment_tpye_v,reciept=f_reciept, deliver_cost=updated_cost_name)
+        return redirect('reciept',job)
 
     context = {'cart_context':cart,"payment_type_context": payment_type}
     return render(request,'customer_cart.html',context)
@@ -48,8 +47,8 @@ def customer_cart(request,id):
 
 
 
-def daily_sale_report(request,id):
-    c_cart = Customer_cart.objects.filter(c_cart=id)
+def daily_sale_report(request):
+    c_cart = Customer_cart.objects.all()
     context = {'c_cart_context':c_cart}
     return render(request,'daily_sale_report.html',context)
 
