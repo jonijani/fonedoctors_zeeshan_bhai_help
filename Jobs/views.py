@@ -395,6 +395,7 @@ def job_deliver(request,id):
 def job_rebook(request,id):
     j_rebook = Jobs.objects.get(id=id)
     faults = Fault.objects.all()
+    job_status_v = Job_status.objects.all()
     if request.method == "POST":
         imei_r = request.POST.get("imei")
         fault_r = request.POST.get("faults")
@@ -402,17 +403,20 @@ def job_rebook(request,id):
         passcode_r = request.POST.get("passcode")
         cost_r = request.POST.get("cost")
         eta_r = request.POST.get("eta")
+        job_status_r = request.POST.get("job_status")
         payment_r = request.POST.get("payment_status")
         
 
         fault_c = Fault.objects.get(fault=fault_r)
-#make =  j_rebook.make,model = j_rebook.model,
+        job_status_c = Job_status.objects.get(job_status=job_status_r)
+
         data = Job_rebook(j_rebook=j_rebook,
                             cost_r= cost_r,
                             eta_r =  eta_r,
                             fault_r=  fault_c,
                             description_r = description_r,
                             imei_r =  imei_r,
+
                             rebooked_on = datetime.datetime.now(),
                             rebooked_by = request.user   )
                                             
@@ -428,12 +432,19 @@ def job_rebook(request,id):
                             description = description_r,
                             imei =  imei_r,
                             payment_status = j_rebook.payment_status,
+                            job_status = job_status_c,
                             created_date = datetime.datetime.now(),
                             created_by = request.user )
         job_data.save()
+        data_v = Jobs.objects.get(id=job_data.id)
+        reciept = Reciepts(reciept=data_v)
+        reciept.save()
+        return redirect ('reciept',data_v)
         
 
-
+# job_data =  Jobs.objects.get(id=data.id)          
+#         reciept = Reciepts(reciept=job_data)
+#         reciept.save()
 
 
     context = {'j_rebook_context':j_rebook,"fault_context":faults }

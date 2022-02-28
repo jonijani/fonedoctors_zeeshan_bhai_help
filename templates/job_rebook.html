@@ -88,6 +88,24 @@
         
         
       </div>
+
+
+
+      <div class="mb-3"  >
+          
+        <label for="job_status_list" class="form-label"> <strong> Job Status </strong></label>
+        <input list="job_status_list" name = "job_status" class="form-control" id="job_status_id" >
+        <datalist id="job_status_list" >
+          <option></option>
+          {% for job_status in job_status_context %}
+          <option value="{{job_status.job_status}}"></option>
+
+          {% endfor %}
+          
+      </datalist>
+
+
+    </div>
   
   
   
