@@ -10,7 +10,7 @@ class JobsAdmin(admin.ModelAdmin):
 class CompleteAdmin(admin.ModelAdmin):
     list_display = ['c_job', 'complete_update', 'completed_by', 'payment_status_com', 'cost_com', 'completed_on']
 
-admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update, Fingerprints, Reciepts  ])
+admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update, Fingerprints, Reciepts ,Job_rebook ])
 admin.site.register(Devices,DevicesAdmin)
 admin.site.register(Jobs,JobsAdmin)
 admin.site.register(Complete_job,CompleteAdmin)

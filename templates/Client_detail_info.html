@@ -12,7 +12,7 @@
       <h3 class="text-white bg-primary text-center">Client info</h3>
       
 
-       <p><strong>Client ID : </strong>&nbsp;&nbsp; <a href="{% url 'update_client_details' customer_context.id %}">{{customer_context.id}}&nbsp;&nbsp;:&nbsp;&nbsp;  Update client details</a> </p>
+       <p><strong>Client ID : </strong>&nbsp;&nbsp; <a href="{% url 'update_client_details' customer_context.id %}">{{customer_context.id }}&nbsp;&nbsp;:&nbsp;&nbsp;  Update client details</a> </p>
       <p><strong>First name : </strong>&nbsp;&nbsp; {{customer_context.first_name}}</p>
       <p><strong> Last name :</strong>&nbsp;&nbsp;{{customer_context.last_name}}</p>
       <p><strong>Mobile     :</strong> &nbsp;&nbsp;{{customer_context.phone}}</p>
@@ -59,7 +59,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for jobs_context in jobs_context %}
+      {% for jobs_context in jobs_context reversed %}
          <tr>
           <th><a href="{% url 'job_detail_page' jobs_context.id %}">{{jobs_context.id}}</a></th>
           <td>{{jobs_context.imei}}</td>

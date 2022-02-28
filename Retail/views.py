@@ -32,10 +32,10 @@ def customer_cart(request,id):
         
         payment_type_name = request.POST.get("payment_type_name")
 
-        payment_tpye_v = Payment_type.objects.get(id=payment_type_name)
+        payment_tpye_v = Payment_type.objects.get(id=payment_type_name)#fetch payment type and id = front end ( whats selecetd from user)
         
         temp = Customer_cart.objects.get(id=id)
-        job = temp.c_cart
+        job = temp.c_cart# ??
         f_reciept = Reciepts(reciept=job)
         f_reciept.save()
         cart_save = Customer_cart.objects.filter(id=id).update(payment_type=payment_tpye_v,reciept=f_reciept, deliver_cost=updated_cost_name)

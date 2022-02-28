@@ -96,19 +96,19 @@ class Jobs(models.Model):
     
     customer = models.ForeignKey(Customer,on_delete = models.CASCADE, related_name = 'job_customer')
     device =  models.ForeignKey(Devices,on_delete = models.CASCADE, related_name = 'job_device', null = True, blank=True)
-    make = models.ForeignKey(Make,on_delete = models.CASCADE, related_name = 'job_make')
-    model = models.ForeignKey(Model,on_delete = models.CASCADE, related_name = 'job_model')
-    fault =  models.ForeignKey(Fault,on_delete = models.CASCADE, related_name = 'job_faults')
-    description = models.TextField()
-    imei = models.CharField(max_length=250)
-    accessories = models.ForeignKey(Accessories,on_delete = models.CASCADE, related_name = 'job_acessories')
-    sale_item = models.ForeignKey(Sale_item,on_delete = models.CASCADE, related_name = 'job_acessories')
-    passcode = models.CharField(max_length=250)
-    network = models.ForeignKey(Network,on_delete = models.CASCADE, related_name = 'job_network')
-    cost = models.IntegerField()
-    job_status = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_job_status')
-    collection_time = models.DateTimeField()
-    payment_status = models.CharField(choices= PAYMENT_STATUS, max_length=250)
+    make = models.ForeignKey(Make,on_delete = models.CASCADE, related_name = 'job_make', null=True, blank=True)
+    model = models.ForeignKey(Model,on_delete = models.CASCADE, related_name = 'job_model', null=True, blank=True)
+    fault =  models.ForeignKey(Fault,on_delete = models.CASCADE, related_name = 'job_faults', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    imei = models.CharField(max_length=250, null=True, blank=True)
+    accessories = models.ForeignKey(Accessories,on_delete = models.CASCADE, related_name = 'job_acessories', null=True, blank=True)
+    sale_item = models.ForeignKey(Sale_item,on_delete = models.CASCADE, related_name = 'sale_acessories', null=True, blank=True)
+    passcode = models.CharField(max_length=250, null=True, blank=True)
+    network = models.ForeignKey(Network,on_delete = models.CASCADE, related_name = 'job_network', null=True, blank=True)
+    cost = models.IntegerField(null=True, blank=True)
+    job_status = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_job_status', null=True, blank=True)
+    collection_time = models.DateTimeField(null=True, blank=True)
+    payment_status = models.CharField(choices= PAYMENT_STATUS, max_length=250, null=True, blank=True)
     created_date = models.DateTimeField(null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
 
@@ -191,7 +191,19 @@ class Complete_job(models.Model):
         #return f'{self.c_job.id} {self.c_job.make} {self.c_job.make} '
         return self.complete_update
 
+class Job_rebook(models.Model):
+    j_rebook = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+    
+    cost_r = models.CharField(max_length=250, null = True, blank=True)
+    rebooked_on = models.DateTimeField(null=True, blank=True)
+    rebooked_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    eta_r = models.DateTimeField(null = True, blank=True)
+    fault_r =  models.ForeignKey(Fault,on_delete = models.CASCADE, related_name = 'fault_r', null = True, blank=True)
+    description_r = models.TextField(null = True, blank=True)
+    imei_r = models.CharField(max_length=250, null = True, blank=True)
 
+    def __str__(self):
+        return str(self.j_rebook.id)
 
 
     

@@ -352,10 +352,7 @@ def contact_by_email(request,id,job_id):
     context = {'e_context':e, 'j_id_context':j_id, }
     return render(request,'contact_by_email.html', context )
 
-# def complete(request,id):
-#     complete_job = Jobs.objects.get(id=id)
-#     context = {'complete_job_context':complete_job}
-#     return render(request,'complete.html',context)
+
 
 def complete(request,id):
     complete_job = Jobs.objects.get(id=id)
@@ -394,9 +391,69 @@ def job_deliver(request,id):
     return render(request,'retail_sale_page.html',context)
 
 
+
+def job_rebook(request,id):
+    j_rebook = Jobs.objects.get(id=id)
+    faults = Fault.objects.all()
+    if request.method == "POST":
+        imei_r = request.POST.get("imei")
+        fault_r = request.POST.get("faults")
+        description_r = request.POST.get("description")
+        passcode_r = request.POST.get("passcode")
+        cost_r = request.POST.get("cost")
+        eta_r = request.POST.get("eta")
+        payment_r = request.POST.get("payment_status")
+        
+
+        fault_c = Fault.objects.get(fault=fault_r)
+#make =  j_rebook.make,model = j_rebook.model,
+        data = Job_rebook(j_rebook=j_rebook,
+                            cost_r= cost_r,
+                            eta_r =  eta_r,
+                            fault_r=  fault_c,
+                            description_r = description_r,
+                            imei_r =  imei_r,
+                            rebooked_on = datetime.datetime.now(),
+                            rebooked_by = request.user   )
+                                            
+        data.save()
+
+        job_data = Jobs(customer = j_rebook.customer,
+                            device = j_rebook.device,
+                            make =  j_rebook.make,
+                            model = j_rebook.model,
+                            cost= cost_r,
+                            collection_time =  eta_r,
+                            fault=  fault_c,
+                            description = description_r,
+                            imei =  imei_r,
+                            payment_status = j_rebook.payment_status,
+                            created_date = datetime.datetime.now(),
+                            created_by = request.user )
+        job_data.save()
+        
+
+
+
+
+    context = {'j_rebook_context':j_rebook,"fault_context":faults }
+    return render(request,'job_rebook.html',context)
+
+
+
 def send_text_page(request):
     return render(request,'send_text_page.html')
 
+
+
+
+
+
+    context = {'j_rebook_context':job_update}
+    return render(request,'job_rebook.html',context)
+     
+        
+    
 
 
 

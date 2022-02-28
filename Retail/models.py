@@ -41,3 +41,4 @@ class Daily_sale(models.Model):
 
     def __str__(self):
         return str(self.d_sale.id)
+
