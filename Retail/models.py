@@ -14,6 +14,7 @@ class Customer_cart(models.Model):
     deliver_cost = models.CharField(max_length=250, null = True, blank=True)
     payment_type = models.ForeignKey(Payment_type,  on_delete=models.CASCADE, null = True, blank=True)
     reciept = models.ForeignKey(Reciepts,  on_delete=models.CASCADE, null = True, blank=True)
+    delivery_comments = models.CharField(max_length=250, null = True, blank=True)
     sale_person = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
 

@@ -77,10 +77,8 @@
   <div class="container border border-dark  ">
     <div class="row">
       <div class="col border border-dark bg-light col-md-8 ">
-        
-
-        
-        <h3 class="text-white --primary text-center">  Job updates</h3>
+    
+        <h3 class="text-white bg-primary text-center">Job updates</h3>
 
         {% comment %} delivered jobs shows here {% endcomment %}
         {% if job_d_context.delivered %}
@@ -105,7 +103,7 @@
           </tr>
 
           <tr class="mb-4">
-            <td colspan=3><strong>Description :</strong> {{for_job_updates.description_update}}</td>
+            <td colspan=3><strong>Description :</strong> {{job_d_context.delivery_comments}}</td>
           </tr>
 
         </thead>

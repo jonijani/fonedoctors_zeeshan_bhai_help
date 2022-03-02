@@ -226,10 +226,11 @@ class Delivered(models.Model):
     job_status_deliver = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_status_deliver', null = True, blank=True)
     #collection_time_deliver = models.DateTimeField(null = True, blank=True)
     payment_status_deliver = models.CharField(choices= PAYMENT_STATUS, max_length=250, null = True, blank=True)
+    delivery_comments = models.CharField(max_length=250, null = True, blank=True)
     delivered_on = models.DateTimeField(null=True, blank=True)
     delivered_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
     delivered = models.BooleanField(default= False)
-    
+
     def __str__(self):
         return str(self.job_deliver.id) 
 
