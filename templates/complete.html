@@ -23,38 +23,11 @@
             Model :  {{ complete_job_context.model }}
         </div>
 
-        {% comment %} {% endfor %} {% endcomment %}
-
-        {% comment %} {% endfor %} {% endcomment %}
-
-        {% comment %} <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Waranty sticker</span>
-        <input type="#" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div> {% endcomment %}
-
-
-        
-
-            {% comment %} <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option selected>Select part Number</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-          
-    
-         {% endcomment %}
+       
 
         <br>
         
-        {% comment %} <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Select part</option>
-            <option value="1">YES</option>
-            <option value="2">NO</option>
-            <option value="3">Our Own Part</option>
-        </select>
-       {% endcomment %}
-
+      
         <br> 
           {% comment %} cost input {% endcomment %}
         <div class="mb-3">
@@ -63,24 +36,7 @@
     
           </div>
 
-          
-          {% comment %} <div class="mb-3"  >
-            
-            <label for="payment_status_list" class="form-label"> <strong> Payment Status </strong> </label>
-            <select id="payment_status_list" name = "payment_status_com_name" class="form-control">
-      
-              {% for payment_status in complete_job_context %}
-      
-              <option value="PAID" {% if complete_job_context.payment_status == "PAID" %} selected {% endif %} >PAID</option>
-              <option value="UNPAID" {% if complete_job_context.payment_status == "UNPAID" %} selected {% endif %}>UNPAID</option>
-              <option value="CREDIT NOTE" {% if complete_job_context.payment_status == "CREDIT NOTE" %} selected {% endif %}>CREDIT NOTE</option>
-              <option value="REFUND" {% if complete_job_context.payment_status == "REFUND" %} selected {% endif %}>REFUND</option>
-      
-              {% endfor %}
-            </select>
         
-        
-        </div>  {% endcomment %}
 
 
     

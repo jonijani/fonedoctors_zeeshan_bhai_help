@@ -212,8 +212,29 @@ def search_job(request):
 
 
 
+# def job_detail_page(request,id):
+#     detail_page = Jobs.objects.get(id=id)
+#     c_cart = Customer_cart.objects.filter(c_cart=detail_page).first()#when we mentione first or last with filter and dont add for loop it wont give error as only one parameter called.
+    
+#     job_update_table = Job_update.objects.filter(job_update=id)
+#     now = datetime.datetime.now()
+#     Fprint = Fingerprints.objects.filter(job_fprint=id)# job_fprint comes from models as its related to that specific job
+#     update_finger_print= Fingerprints(user_fprint=request.user, date_time_fprint=now.strftime("%m/%d/%Y, %H:%M:%S"), job_fprint=detail_page)
+#     update_finger_print.save()
+
+#     job_complete_v =  Complete_job.objects.filter(c_job=id).last()
+#     context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table,
+#                  'Fprint_context':Fprint , 
+#                  'job_complete_v_context':job_complete_v, 
+#                  'c_cart_context':c_cart}
+#     return render(request,'job_detail_page.html',context)
+
+
 def job_detail_page(request,id):
     detail_page = Jobs.objects.get(id=id)
+    
+    #c_cart = Customer_cart.objects.filter(c_cart=detail_page).first()#when we mentione first or last with filter and dont add for loop it wont give error as only one parameter called.
+    job_d = Delivered.objects.filter(job_deliver=detail_page).first()
     job_update_table = Job_update.objects.filter(job_update=id)
     now = datetime.datetime.now()
     Fprint = Fingerprints.objects.filter(job_fprint=id)# job_fprint comes from models as its related to that specific job
@@ -221,7 +242,11 @@ def job_detail_page(request,id):
     update_finger_print.save()
 
     job_complete_v =  Complete_job.objects.filter(c_job=id).last()
-    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table, 'Fprint_context':Fprint , 'job_complete_v_context':job_complete_v}
+    context = {'detail_page_context':detail_page, 'job_update_table_context':job_update_table,
+                 'Fprint_context':Fprint , 
+                 'job_complete_v_context':job_complete_v, 
+                 'job_d_context':job_d
+                }
     return render(request,'job_detail_page.html',context)
 
 
@@ -371,7 +396,7 @@ def complete(request,id):
                              payment_status_com = payment_status_com_name,
                              completed_on=datetime.datetime.now())
         data.save()
-        job_cost = Jobs.objects.filter(id=id).update(cost=cost_com, job_status = job_status)
+        job_cost = Jobs.objects.filter(id=id).update(cost=cost_com, job_status = job_status ,completed=True )
         
         return redirect('job_detail_page',id)
     context = {'complete_job_context':complete_job}
@@ -385,10 +410,8 @@ def complete(request,id):
 
 
 
-def job_deliver(request,id):
-    j_deliver = Jobs.objects.get(id=id)
-    context = {'j_deliver_context_j':j_deliver}
-    return render(request,'retail_sale_page.html',context)
+def job_deliver(request):
+    return render(request,'job_deliver.html')
 
 
 
@@ -442,10 +465,6 @@ def job_rebook(request,id):
         return redirect ('reciept',data_v)
         
 
-# job_data =  Jobs.objects.get(id=data.id)          
-#         reciept = Reciepts(reciept=job_data)
-#         reciept.save()
-
 
     context = {'j_rebook_context':j_rebook,"fault_context":faults }
     return render(request,'job_rebook.html',context)
@@ -455,13 +474,7 @@ def job_rebook(request,id):
 def send_text_page(request):
     return render(request,'send_text_page.html')
 
-
-
-
-
-
-    context = {'j_rebook_context':job_update}
-    return render(request,'job_rebook.html',context)
+    
      
         
     

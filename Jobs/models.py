@@ -111,6 +111,8 @@ class Jobs(models.Model):
     payment_status = models.CharField(choices= PAYMENT_STATUS, max_length=250, null=True, blank=True)
     created_date = models.DateTimeField(null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    
+    completed = models.BooleanField(default=False)
 
 
 
@@ -181,6 +183,7 @@ class Complete_job(models.Model):
     c_job = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
     complete_update = models.TextField(null = True, blank=True)
     checked = models.BooleanField(default=False)# its to show complete button as long as job is not completed.
+    
     completed_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
     #job_status_com = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_status_update', null = True, blank=True)
     payment_status_com = models.CharField(choices= PAYMENT_STATUS, max_length=250, null = True, blank=True)
@@ -206,8 +209,29 @@ class Job_rebook(models.Model):
         return str(self.j_rebook.id)
 
 
+class Delivered(models.Model):
     
+    job_deliver = models.ForeignKey(Jobs,on_delete = models.CASCADE, related_name = 'job_deliver' , null = True, blank=True)
+    device_deliver =  models.ForeignKey(Devices,on_delete = models.CASCADE, related_name = 'device_deliver', null = True, blank=True)
+    make_deliver = models.ForeignKey(Make,on_delete = models.CASCADE, related_name = 'make_deliver', null = True, blank=True)
+    model_deliver = models.ForeignKey(Model,on_delete = models.CASCADE, related_name = 'model_deliver', null = True, blank=True)
+    fault_deliver =  models.ForeignKey(Fault,on_delete = models.CASCADE, related_name = 'fault_deliver', null = True, blank=True)
+    description_deliver = models.TextField(null = True, blank=True)
+    imei_deliver = models.CharField(max_length=250, null = True, blank=True)
+    #accessories_deliver = models.ForeignKey(Accessories,on_delete = models.CASCADE, related_name = 'accessories_deliver', null = True, blank=True)
+    #sale_item_deliver = models.ForeignKey(Sale_item,on_delete = models.CASCADE, related_name = 'sale_item_deliver', null = True, blank=True)
+    passcode_deliver = models.CharField(max_length=250, null = True, blank=True)
+    #network_deliver = models.ForeignKey(Network,on_delete = models.CASCADE, related_name = 'network_deliver', null = True, blank=True)
+    cost_deliver = models.IntegerField(null = True, blank=True)
+    job_status_deliver = models.ForeignKey(Job_status,on_delete = models.CASCADE, related_name = 'job_status_deliver', null = True, blank=True)
+    #collection_time_deliver = models.DateTimeField(null = True, blank=True)
+    payment_status_deliver = models.CharField(choices= PAYMENT_STATUS, max_length=250, null = True, blank=True)
+    delivered_on = models.DateTimeField(null=True, blank=True)
+    delivered_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    delivered = models.BooleanField(default= False)
     
+    def __str__(self):
+        return str(self.job_deliver.id) 
 
 
 

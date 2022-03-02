@@ -10,6 +10,7 @@ urlpatterns = [
     path('job_detail_page/<str:id>', views.job_detail_page, name='job_detail_page'),
     path('job_update_page/<str:id>', views.job_update_page, name='job_update_page'),
     path('complete/<str:id>', views.complete, name='complete'),
+    path('job_deliver/', views.job_deliver, name='job_deliver'),
     
     path('job_rebook/<str:id>', views.job_rebook, name='job_rebook'),
 

@@ -39,6 +39,17 @@ def customer_cart(request,id):
         f_reciept = Reciepts(reciept=job)
         f_reciept.save()
         cart_save = Customer_cart.objects.filter(id=id).update(payment_type=payment_tpye_v,reciept=f_reciept, deliver_cost=updated_cost_name)
+        job_save = Delivered(job_deliver=job, 
+                                delivered_on=datetime.datetime.now(),
+                                delivered_by=request.user,
+                                make_deliver =  temp.c_cart.make,
+                                model_deliver =  temp.c_cart.model,
+                                fault_deliver =  temp.c_cart.fault,
+                                imei_deliver =  temp.c_cart.imei,
+                                cost_deliver =  temp.c_cart.cost,
+                                delivered=True
+                            )
+        job_save.save()
         return redirect('reciept',job)
 
     context = {'cart_context':cart,"payment_type_context": payment_type}
@@ -48,7 +59,7 @@ def customer_cart(request,id):
 
 
 def daily_sale_report(request):
-    c_cart = Customer_cart.objects.all()
+    d_jobs = Customer_cart.objects.all()
     context = {'c_cart_context':c_cart}
     return render(request,'daily_sale_report.html',context)
 
