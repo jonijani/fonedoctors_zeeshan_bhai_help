@@ -36,15 +36,19 @@ def customer_cart(request,id):
         payment_tpye_v = Payment_type.objects.get(id=payment_type_name)#fetch payment type and id = front end ( whats selecetd from user)
         
         temp = Customer_cart.objects.get(id=id)
+         
+        # temp.c_cart.job_status= Job_status.objects.get(job_status='Delivered')
+        job = temp.c_cart.id# ??
+        jobs = Jobs.objects.filter(id=job).update(job_status= Job_status.objects.get(job_status='Delivered'))
         job = temp.c_cart# ??
         f_reciept = Reciepts(reciept=job)
         f_reciept.save()
         cart_save = Customer_cart.objects.filter(id=id).update(payment_type=payment_tpye_v,
                                                             reciept=f_reciept, 
                                                             deliver_cost=updated_cost_name,
-                                                            delivery_comments = delivery_comments_name_v
+                                                            delivery_comments = delivery_comments_name_v,
                                                             
-                                                            )
+                                                     )
         job_save = Delivered(job_deliver=job, 
                                 delivered_on=datetime.datetime.now(),
                                 delivered_by=request.user,

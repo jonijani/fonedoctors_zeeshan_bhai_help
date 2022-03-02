@@ -141,6 +141,8 @@
 
 
 
+      
+      {% if job_update_table_context.count >= 1 %}
 
 
       <table class="table table-hover ">
@@ -155,8 +157,7 @@
 
 
 
-
-
+          
           {% for for_job_updates in job_update_table_context reversed %}
 
           <tr>
@@ -175,6 +176,48 @@
           </tr>
 
           {% endfor %}
+          
+
+
+
+        </thead>
+      </table>
+      {% endif %}
+
+
+
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th>Created by  </th>
+            <th>Job Status</th>
+            <th>Cost</th>
+            <th>Payment </th>
+            <th>Created on </th>
+          </tr>
+
+
+
+
+
+          {% comment %} {% for detail_page_context in detail_page_context  %} {% endcomment %}
+
+          <tr>
+
+            <td> {{detail_page_context.created_by}}</td>
+            <td> {{detail_page_context.job_status}}</td>
+            <td> {{detail_page_context.cost}}</td>
+            <td> {{detail_page_context.payment_status}}</td>
+            <td> {{detail_page_context.created_date}}</td>
+
+
+          </tr>
+
+          <tr class="mb-4">
+            <td colspan=3><strong>Description :</strong> {{detail_page_context.description}}</td>
+          </tr>
+
+          {% comment %} {% endfor %} {% endcomment %}
 
 
 
