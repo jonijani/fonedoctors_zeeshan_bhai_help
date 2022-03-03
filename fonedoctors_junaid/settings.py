@@ -129,7 +129,10 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
     'static',
+    
 ]
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -142,3 +145,13 @@ EMAIL_HOST_USER = 'learningdjango1@gmail.com'
 EMAIL_HOST_PASSWORD = 'ZAKzak1234'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+
+
+MEDIA_URL = '/media/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+    
+
+
+

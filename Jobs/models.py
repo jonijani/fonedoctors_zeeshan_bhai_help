@@ -235,6 +235,13 @@ class Delivered(models.Model):
         return str(self.job_deliver.id) 
 
 
+class Pictures(models.Model):
+    device_images = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+
+    def __str__(self):
+        return str(self.device_images.id)
 
 
 

@@ -13,7 +13,7 @@ class CompleteAdmin(admin.ModelAdmin):
 class DeliveredAdmin(admin.ModelAdmin):
     list_display = ['job_deliver', 'make_deliver', 'model_deliver', 'fault_deliver', 'imei_deliver','cost_deliver', 'delivered_on','delivered_by','delivery_comments']
 
-admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update, Fingerprints, Reciepts ,Job_rebook ])
+admin.site.register([Make,Model,Fault, Accessories, Sale_item, Network, Job_status,Job_update, Fingerprints, Reciepts ,Job_rebook , Pictures])
 admin.site.register(Devices,DevicesAdmin)
 admin.site.register(Jobs,JobsAdmin)
 admin.site.register(Complete_job,CompleteAdmin)
