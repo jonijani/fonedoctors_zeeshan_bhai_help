@@ -43,9 +43,12 @@ def Add_new_part(request):
                             part_colour = part_colour_v,
                             supplier = supplier_v,
                             quantity = quantity_name,
-                            cost = cost_name
+                            cost = cost_name,
+                            created_by = request.user,
+                            created_date = datetime.datetime.now() 
                             )
         data.save()
+        return redirect('part_added',id=data.id)
 
         
 
@@ -60,5 +63,20 @@ def Add_new_part(request):
 
                 }
     return render(request,'Add_new_part.html',context)
+
+def part_added(request,id):
+    part = Inventories.objects.get(id=id)
+    context = {'part_context':part}
+    return render(request,'part_added.html',context)
+
+
+def part_detail(request,id):
+    part = Inventories.objects.get(id=id)
+    context = {'part_detail_context':part}
+    return render(request,'part_detail.html',context)
+
+
+
+
 
 

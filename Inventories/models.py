@@ -1,5 +1,6 @@
 from django.db import models
 from Jobs.models import *
+from django.contrib.auth.models import User
 
 
 
@@ -38,6 +39,9 @@ class Inventories(models.Model):
     supplier = models.ForeignKey(Supplier,on_delete=models.CASCADE, related_name = 'inventory_supplier')
     quantity = models.IntegerField()
     cost = models.IntegerField()
+    created_date = models.DateTimeField(null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    
     
    
 
