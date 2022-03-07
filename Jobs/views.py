@@ -25,6 +25,7 @@ def add_job(request):
         sale_item = Sale_item.objects.all()
         network = Network.objects.all()
         job_status = Job_status.objects.all()
+        img = Pictures.objects.all()
         #payment = payment_status.objects.all()  'payment_status_context':payment,  
         context = {'customers':customers,
                     'device_context':device, 
@@ -35,6 +36,7 @@ def add_job(request):
                     'sale_item_context':sale_item , 
                     'network_context':network,
                     'job_status_context': job_status
+
                     }
         return render(request,'add_job.html',context)
     
@@ -56,6 +58,7 @@ def add_job(request):
         job_status = request.POST.get('job_status')
         eta = request.POST.get('eta')
         payment = request.POST.get('payment_status')
+        img_name = request.FILES['image_name']
 
         customer_id = Customer.objects.get(id=customer1)# customer_id is new variable than Customer class and in brackets id comes from html value="id" and customer is variable in line 35.
         device_id = Devices.objects.get(devices=device)
@@ -66,6 +69,8 @@ def add_job(request):
         sale_item_id = Sale_item.objects.get(sale_item=sale_item)
         network_id = Network.objects.get(network=network)
         job_status_id = Job_status.objects.get(job_status=job_status)
+
+       
         
 
         data = Jobs(customer=customer_id,#customer is column or field from classes and customer_id from line 51.
@@ -87,6 +92,9 @@ def add_job(request):
                     created_date = datetime.datetime.now() )
         data.save() 
         job_data =  Jobs.objects.get(id=data.id)          
+        img_v = Pictures(device_images=job_data, image=img_name)
+        img_v.save()
+        
         reciept = Reciepts(reciept=job_data)
         reciept.save()
 
@@ -472,7 +480,13 @@ def job_rebook(request,id):
 
 
 def send_text_page(request):
-    return render(request,'send_text_page.html')
+    return render(request,'send_text_page.html') 
+
+
+def images(request,id):
+    img = Pictures.objects.filter(device_images=id)
+    context = {'img_context':img}
+    return render(request,'images.html',context)
 
     
      

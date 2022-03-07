@@ -240,8 +240,8 @@ class Pictures(models.Model):
     image = models.ImageField(null=True, blank=True)
 
 
-    def __str__(self):
-        return str(self.device_images.id)
+    # def __str__(self):
+    #     return str(self.device_images.id)
 
 
 

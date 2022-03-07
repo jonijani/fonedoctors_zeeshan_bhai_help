@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Images page </h3>
+
+{% for img_context in img_context %}
+
+<a href="/media/{{img_context.image}}"> <img src="/media/{{img_context.image}}"></a>
+{% endfor %}
+
+
+
+
+{% endblock %}

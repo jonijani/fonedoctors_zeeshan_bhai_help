@@ -4,7 +4,7 @@
 <h3>Add job page</h3>
 
 
-<form method="POST" action= "{% url 'add_job' %}">
+<form method="POST" action= "{% url 'add_job' %}" enctype='multipart/form-data' >
   {% csrf_token %}
 <div class="container">
   <div class="row">
