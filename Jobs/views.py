@@ -92,7 +92,11 @@ def add_job(request):
                     created_date = datetime.datetime.now() )
         data.save() 
         job_data =  Jobs.objects.get(id=data.id)          
-        img_v = Pictures(device_images=job_data, image=img_name)
+        img_v = Pictures(device_images=job_data,
+                         image=img_name,
+                         time = datetime.datetime.now(),
+                         user = request.user
+                         )
         img_v.save()
         
         reciept = Reciepts(reciept=job_data)
@@ -197,23 +201,23 @@ def search_job(request):
     return render(request,'search_job.html')
     
 
-# def search_job(request):
+def search_job(request):
     
-#     if request.method =="POST":
+    if request.method =="POST":
         
-#         searched = request.POST['searched']
-#         lookup = (Q(id__icontains=searched)
-#         |Q(make__icontains=searched)
-#         |Q(model__icontains=searched)
-#         |Q(imei__icontains=searched)
-#         |Q(created_date__icontains=searched)
-#         |Q(job_status__icontains=searched))
-        
-#         result = Jobs.objects.filter(lookup)
-#         context = {'result_context':result, 'searched':searched}
-#         return render(request,'search_job.html',context)
-#     else:
-#         return render(request,'search_job.html' )
+        searched = request.POST['searched']
+        lookup = (Q(id__icontains=searched)
+        |Q(make__make__icontains=searched)
+        #|Q(model__icontains=searched)
+        |Q(imei__icontains=searched)
+        |Q(created_date__icontains=searched)
+        #|Q(job_status__icontains=searched))
+        )
+        result = Jobs.objects.filter(lookup)
+        context = {'result_context':result, 'searched':searched}
+        return render(request,'search_job.html',context)
+    else:
+        return render(request,'search_job.html' )
 
 
 
@@ -485,6 +489,23 @@ def send_text_page(request):
 
 def images(request,id):
     img = Pictures.objects.filter(device_images=id)
+    if request.method == "POST":
+        img_name = request.FILES['image_name']  
+        comments_name = request.POST.get("comments_name")
+
+    
+        #job_data =  Jobs.objects.get(id=data.id) 
+        img_data =  Jobs.objects.get(id=id)          
+        img_v = Pictures(device_images=img_data, 
+                            image=img_name, 
+                            captured_at = datetime.datetime.now(),
+                            captured_by = request.user,
+                            comments = comments_name
+                            )
+        img_v.save()
+        
+
+
     context = {'img_context':img}
     return render(request,'images.html',context)
 

@@ -35,19 +35,21 @@ def Add_new_part(request):
         part_name_v = Part_name.objects.get(part_name=part_name)
         part_colour_v = Part_colour.objects.get(colour=part_colour)
         supplier_v = Supplier.objects.get(supplier=supplier_name)
+        for i in range(int(quantity_name)):#this for loop tells form to execute depends on quantity numbers .
 
-        data = Inventories( devices = device_v,
-                            make = make_v,
-                            model = model_v,
-                            part_name = part_name_v,
-                            part_colour = part_colour_v,
-                            supplier = supplier_v,
-                            quantity = quantity_name,
-                            cost = cost_name,
-                            created_by = request.user,
-                            created_date = datetime.datetime.now() 
-                            )
-        data.save()
+
+            data = Inventories( devices = device_v,
+                                make = make_v,
+                                model = model_v,
+                                part_name = part_name_v,
+                                part_colour = part_colour_v,
+                                supplier = supplier_v,
+                                quantity = quantity_name,
+                                cost = cost_name,
+                                created_by = request.user,
+                                created_date = datetime.datetime.now() 
+                                )
+            data.save()
         return redirect('part_added',id=data.id)
 
         

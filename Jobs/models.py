@@ -238,6 +238,10 @@ class Delivered(models.Model):
 class Pictures(models.Model):
     device_images = models.ForeignKey(Jobs, on_delete = models.CASCADE, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    captured_at = models.DateTimeField(null=True, blank=True)
+    captured_by = models.ForeignKey(User, on_delete = models.CASCADE, null=True, blank=True)
+    comments = models.CharField(max_length=250, null = True, blank=True)
+
 
 
     # def __str__(self):
