@@ -494,7 +494,6 @@ def images(request,id):
         comments_name = request.POST.get("comments_name")
 
     
-        #job_data =  Jobs.objects.get(id=data.id) 
         img_data =  Jobs.objects.get(id=id)          
         img_v = Pictures(device_images=img_data, 
                             image=img_name, 
@@ -503,6 +502,7 @@ def images(request,id):
                             comments = comments_name
                             )
         img_v.save()
+        return redirect('images',id=id)
         
 
 
